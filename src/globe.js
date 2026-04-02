@@ -79,7 +79,7 @@ function focusOnIsland(islandConfig) {
   globeInstance.pointOfView({
     lat: islandConfig.lat,
     lng: islandConfig.lng,
-    altitude: 0.8
+    altitude: 0.4
   }, 1000); // 1000ms transition
 }
 

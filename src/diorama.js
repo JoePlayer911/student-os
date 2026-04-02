@@ -1,15 +1,50 @@
 // src/diorama.js
 import { dioramaData } from './data/dioramas.js';
+import { resetGlobeView } from './globe.js';
 
 let isDioramaActive = false;
 let currentDioramaContext = null;
 
 const getAssetUrl = (url) => {
   if (url && url.startsWith('/assets/')) {
+const getAssetUrl = (url) => {
+  if (url && url.startsWith('/assets/')) {
     return import.meta.env.BASE_URL + url.substring(1);
   }
   return url;
 };
+
+// Simple synthesized SFX
+function playSciFiSound(type) {
+  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  
+  if (type === 'enter') {
+    // Swoosh up
+    osc.type = 'sine';
+    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.5);
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.5);
+  } else if (type === 'exit') {
+    // Sweep down
+    osc.type = 'square';
+    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
+    osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.4);
+    gain.gain.setValueAtTime(0, audioCtx.currentTime);
+    gain.gain.linearRampToValueAtTime(0.2, audioCtx.currentTime + 0.05);
+    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
+    osc.start();
+    osc.stop(audioCtx.currentTime + 0.4);
+  }
+}
 
 export function initDioramaSystem() {
   const exitBtn = document.getElementById('diorama-exit-btn');
@@ -97,7 +132,13 @@ export function openDiorama(islandId) {
 
     const layerEl = document.createElement('div');
     layerEl.className = 'diorama-layer';
+    if (layerData.className) {
+      layerEl.classList.add(layerData.className);
+    }
     layerEl.setAttribute('data-speed', layerData.depth.toString());
+    
+    // Explicit Z-Index based on depth so foreground is always in front
+    layerEl.style.zIndex = Math.floor(layerData.depth * 100);
     
     // Set position and size
     layerEl.style.width = layerData.width || '100%';
@@ -148,6 +189,8 @@ export function openDiorama(islandId) {
   // Trigger reflow for transition
   void view.offsetWidth;
   view.style.opacity = '1';
+
+  playSciFiSound('enter');
 }
 
 export function closeDiorama() {
@@ -155,6 +198,10 @@ export function closeDiorama() {
   const view = document.getElementById('diorama-view');
   
   view.style.opacity = '0';
+  playSciFiSound('exit');
+  
+  // Reset the globe view
+  resetGlobeView();
   
   setTimeout(() => {
     view.classList.add('hidden');

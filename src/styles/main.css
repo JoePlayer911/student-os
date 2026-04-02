@@ -660,6 +660,31 @@ header, nav, #bottom-bar, #panels-container {
   box-shadow: var(--glow-gold);
 }
 
+/* Volcano empty indicator */
+.volcano-hover {
+  cursor: help;
+  animation: blink 2s infinite;
+  transition: transform 0.3s cubic-bezier(0.2, 1.2, 0.3, 1), opacity 0.3s;
+  pointer-events: auto !important; /* Allow hover */
+  opacity: 0; /* invisible until hovered */
+}
+
+.volcano-hover:hover {
+  opacity: 1; /* fade in */
+  animation: blinkFast 0.5s infinite;
+  transform: scale(1.5) !important;
+}
+
+@keyframes blink {
+  0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 40, 40, 0.8)); opacity: 0; }
+  50% { filter: drop-shadow(0 0 20px rgba(255, 40, 40, 1)); opacity: 0.5; }
+}
+
+@keyframes blinkFast {
+  0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 40, 40, 0.8)); opacity: 1; }
+  50% { filter: drop-shadow(0 0 30px rgba(255, 40, 40, 1)); opacity: 0.8; }
+}
+
 /* Annotation Icon inside Hotspot */
 .diorama-hotspot::after {
   content: '?';

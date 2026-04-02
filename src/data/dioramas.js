@@ -7,6 +7,9 @@ export const dioramaData = {
     bgColor: "#2E5A88", 
     layers: [
       {
+        id: "bg-jawa", type: "image", url: "/assets/jawa/jawa-background.jpeg", depth: 0.1, colorPlaceholder: "#224A6D", width: "100%", height: "100%", top: "0", left: "0"
+      },
+      {
         id: "mid-rumah-gadang",
         type: "image",
         url: "/assets/sumatra/sumatra-house.png", 
@@ -73,7 +76,13 @@ export const dioramaData = {
     bgColor: "#3E6B89",
     layers: [
       {
-        id: "bg-forest", type: "image", url: "/assets/kalimantan/volcano.webp", depth: 0.1, colorPlaceholder: "#2C4F66", width: "100%", height: "100%", top: "0", left: "0"
+        id: "bg-forest", type: "image", url: "/assets/jawa/jawa-background.jpeg", depth: 0.1, colorPlaceholder: "#2C4F66", width: "100%", height: "100%", top: "0", left: "0"
+      },
+      {
+        id: "volcano", type: "image", url: "/assets/kalimantan/volcano.webp", depth: 0.15, colorPlaceholder: "#2C4F66", width: "30%", height: "40%", top: "35%", left: "70%"
+      },
+      {
+        id: "no-volcano", type: "image", url: "/assets/kalimantan/non.webp", depth: 0.16, colorPlaceholder: "transparent", width: "10%", height: "15%", top: "45%", left: "80%", className: "volcano-hover"
       },
       {
         id: "river", type: "image", url: "/assets/kalimantan/river.webp", depth: 0.2, colorPlaceholder: "#2C4F66", width: "100%", height: "60%", top: "40%", left: "0"
