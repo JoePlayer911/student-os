@@ -1121,6 +1121,7 @@ header, nav, #bottom-bar, #panels-container {
   align-items: center;
   justify-content: center;
   overflow: hidden;
+  cursor: pointer;
   transition: opacity 2s ease-in-out;
 }
 
@@ -1169,6 +1170,10 @@ header, nav, #bottom-bar, #panels-container {
   animation: intro-pulse 2s infinite;
   cursor: pointer;
   pointer-events: auto;
+}
+
+#press-to-soar.hidden {
+  display: none;
 }
 
 @keyframes intro-pulse {

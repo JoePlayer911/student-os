@@ -3,10 +3,14 @@ import { renderSidebars } from './sidebar.js';
 import { initBottomBar, updateBottomBar } from './bottom-bar.js';
 import { initPanels, openPanel, closeAllPanels } from './panels.js';
 import { initDioramaSystem } from './diorama.js';
+import { initIntroSequence } from './intro.js';
 
 console.log("Nusantara Explorer OS Initialized.");
 
 document.addEventListener("DOMContentLoaded", () => {
+    // 0. Mount the cinematic intro flow
+    initIntroSequence();
+
     // 1. Initialize Panels
     initPanels();
 
