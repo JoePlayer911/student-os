@@ -1108,6 +1108,74 @@ header, nav, #bottom-bar, #panels-container {
   color: black;
 }
 
+/* =========================================
+   CINEMATIC INTRO
+   ========================================= */
+
+#cinematic-intro {
+  position: absolute;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background-color: #000;
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  transition: opacity 2s ease-in-out;
+}
+
+#cinematic-intro.intro-fade-out {
+  opacity: 0;
+  pointer-events: none;
+}
+
+#intro-video {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%; min-height: 100%;
+  width: auto; height: auto;
+  opacity: 0;
+  transition: opacity 1s ease-in-out;
+  pointer-events: none;
+}
+
+#intro-video.video-visible {
+  opacity: 1;
+}
+
+.intro-titles {
+  position: absolute;
+  z-index: 10000;
+  text-align: center;
+  pointer-events: none;
+  transition: opacity 0.5s ease-in-out;
+}
+
+.welcome-text {
+  font-family: var(--font-scifi);
+  color: #fff;
+  font-size: clamp(2rem, 5vw, 6rem);
+  letter-spacing: 12px;
+  text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+  margin-bottom: 30px;
+}
+
+#press-to-soar {
+  font-family: var(--font-primary);
+  color: var(--accent-cyan);
+  font-size: clamp(1rem, 2vw, 2rem);
+  letter-spacing: 5px;
+  animation: intro-pulse 2s infinite;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+@keyframes intro-pulse {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 1; text-shadow: 0 0 10px var(--accent-cyan); }
+}
+
 /* Scale UI down roughly by half for mobile landscape */
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {
