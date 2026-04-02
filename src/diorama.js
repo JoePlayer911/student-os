@@ -7,13 +7,10 @@ let currentDioramaContext = null;
 
 const getAssetUrl = (url) => {
   if (url && url.startsWith('/assets/')) {
-const getAssetUrl = (url) => {
-  if (url && url.startsWith('/assets/')) {
     return import.meta.env.BASE_URL + url.substring(1);
   }
   return url;
 };
-
 // Simple synthesized SFX
 function playSciFiSound(type) {
   const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
@@ -137,7 +134,7 @@ export function openDiorama(islandId) {
     }
     layerEl.setAttribute('data-speed', layerData.depth.toString());
     
-    // Explicit Z-Index based on depth so foreground is always in front
+    // Explicit Z-Index based on depth so background (lower number) is backwards
     layerEl.style.zIndex = Math.floor(layerData.depth * 100);
     
     // Set position and size
