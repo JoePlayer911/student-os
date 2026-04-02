@@ -878,3 +878,64 @@ header, nav, #bottom-bar, #panels-container {
   box-shadow: var(--glow-cyan);
   transform: scale(1.1);
 }
+
+/* ---------------------------------
+   MOBILE COMPATIBILITY
+--------------------------------- */
+#orientation-warning {
+  display: none;
+  position: fixed;
+  top: 0; left: 0; width: 100vw; height: 100vh;
+  background: var(--bg-dark);
+  z-index: 9999;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  color: var(--accent-gold);
+  font-family: var(--font-scifi);
+}
+
+.warning-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  animation: rotatePhone 2s infinite ease-in-out;
+}
+
+@keyframes rotatePhone {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(-90deg); }
+  100% { transform: rotate(-90deg); }
+}
+
+/* Show Warning when in Portrait on small screens */
+@media screen and (max-width: 1000px) and (orientation: portrait) {
+  #app { display: none !important; }
+  #orientation-warning { display: flex; }
+}
+
+/* Scale UI down roughly by half for mobile landscape */
+@media screen and (max-width: 1000px) and (orientation: landscape) {
+  html {
+     /* Scale down the base rem font-size which drives everything else */
+     font-size: 65%; 
+  }
+  
+  .sidebar-btn {
+    min-width: 120px;
+  }
+  
+  /* Ensure panels don't overflow small screens */
+  .panel {
+     max-width: 90vw !important;
+     max-height: 90vh !important;
+  }
+  
+  #diorama-annotation {
+     width: 80vw;
+  }
+  
+  .picker-result {
+     height: 80px;
+  }
+}
