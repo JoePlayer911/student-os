@@ -3,7 +3,7 @@ import { dioramaData } from '../data/dioramas.js';
 import { openDiorama } from '../diorama.js';
 
 let currentGameIslandId = null;
-let currentDraggedItem = null;
+let activeTargetEl = null;
 let remainingItems = 0;
 
 export function startNusantacraft() {
@@ -18,11 +18,41 @@ export function startNusantacraft() {
   // Launch Diorama in Game Mode
   openDiorama(randomIsland, true); // true = gameMode
   
+  // Reset state
+  activeTargetEl = null;
+  
   // Build the UI
   document.getElementById('nc-ui').classList.remove('hidden');
   document.getElementById('nc-victory-modal').classList.add('hidden');
   
+  // Bind global click listener for clicking on diorama targets
+  // It's attached to the container so it works for dynamically injected targets
+  const container = document.getElementById('diorama-layers-container');
+  container.removeEventListener('click', handleDioramaClick); // prevent duplicates
+  container.addEventListener('click', handleDioramaClick);
+  
   buildInventory(randomIsland);
+}
+
+function handleDioramaClick(e) {
+  const target = e.target.closest('.nc-drop-target');
+  if (!target) return;
+  
+  // If clicking an already selected target, deselect it
+  if (activeTargetEl === target) {
+    target.classList.remove('nc-target-selected');
+    activeTargetEl = null;
+    return;
+  }
+  
+  // Deselect previous
+  if (activeTargetEl) {
+    activeTargetEl.classList.remove('nc-target-selected');
+  }
+  
+  // Select new
+  activeTargetEl = target;
+  target.classList.add('nc-target-selected');
 }
 
 function buildInventory(correctIslandId) {
@@ -73,86 +103,31 @@ function buildInventory(correctIslandId) {
       : itemData.url;
     sprite.style.backgroundImage = `url(${resolvedUrl})`;
     
-    // Bind generic pointer events
-    bindDragEvents(sprite);
+    // Bind click event instead of drag events
+    sprite.addEventListener('click', () => {
+      handleTrayItemClick(sprite, itemData.url);
+    });
     
     slot.appendChild(sprite);
     track.appendChild(slot);
   });
 }
 
-function bindDragEvents(el) {
-  let initialX, initialY;
-  let offsetX = 0, offsetY = 0;
+function handleTrayItemClick(spriteEl, itemUrl) {
+  if (!activeTargetEl) {
+    showToast("Select an empty slot in the diorama first!");
+    return;
+  }
   
-  el.addEventListener('pointerdown', (e) => {
-    e.preventDefault();
-    el.setPointerCapture(e.pointerId);
-    
-    const rect = el.getBoundingClientRect();
-    // Remember initial position in the tray
-    el.setAttribute('data-origin-x', rect.left);
-    el.setAttribute('data-origin-y', rect.top);
-    
-    // Switch to absolute positioning at the document level
-    el.style.position = 'fixed';
-    el.style.left = rect.left + 'px';
-    el.style.top = rect.top + 'px';
-    el.style.zIndex = 1000;
-    
-    // Store where user grabbed the element relative to its top-left
-    initialX = e.clientX;
-    initialY = e.clientY;
-    
-    // Move to body so it escapes the overflow-x hidden/scroll tray!
-    document.body.appendChild(el);
-  });
+  const requiredUrl = activeTargetEl.getAttribute('data-expected-url');
   
-  el.addEventListener('pointermove', (e) => {
-    if (!el.hasPointerCapture(e.pointerId)) return;
-    
-    const dx = e.clientX - initialX;
-    const dy = e.clientY - initialY;
-    
-    el.style.transform = `translate(${dx}px, ${dy}px)`;
-  });
-  
-  el.addEventListener('pointerup', (e) => {
-    el.releasePointerCapture(e.pointerId);
-    
-    // Check intersection with any drop zones
-    const dropZones = document.querySelectorAll('.nc-drop-target');
-    const spriteRect = el.getBoundingClientRect();
-    
-    let droppedZone = null;
-    dropZones.forEach(zone => {
-      const zRect = zone.getBoundingClientRect();
-      // Basic overlapping box detection
-      if (!(spriteRect.right < zRect.left || 
-            spriteRect.left > zRect.right || 
-            spriteRect.bottom < zRect.top || 
-            spriteRect.top > zRect.bottom)) {
-        droppedZone = zone;
-      }
-    });
-    
-    if (droppedZone) {
-      // Validate
-      const requiredUrl = droppedZone.getAttribute('data-expected-url');
-      const droppedUrl = el.getAttribute('data-url');
-      
-      if (requiredUrl === droppedUrl) {
-        // Success!
-        handleSuccess(el, droppedZone);
-      } else {
-        // Fail
-        handleFail(el);
-      }
-    } else {
-      // Return to tray
-      returnToTray(el);
-    }
-  });
+  if (requiredUrl === itemUrl) {
+    // Success!
+    handleSuccess(spriteEl, activeTargetEl);
+  } else {
+    // Fail
+    handleFail();
+  }
 }
 
 function handleSuccess(spriteEl, dropZoneEl) {
@@ -166,8 +141,12 @@ function handleSuccess(spriteEl, dropZoneEl) {
   const resolvedUrl = spriteEl.style.backgroundImage;
   dropZoneEl.style.backgroundImage = resolvedUrl;
   
-  // Destroy dragged sprite
-  spriteEl.remove();
+  // Make sprite disappear from tray
+  spriteEl.style.opacity = '0';
+  spriteEl.style.pointerEvents = 'none';
+  
+  // Deselect target
+  activeTargetEl = null;
   
   // Decrement
   remainingItems--;
@@ -176,24 +155,8 @@ function handleSuccess(spriteEl, dropZoneEl) {
   }
 }
 
-function handleFail(spriteEl) {
+function handleFail() {
   showToast("Hmm, that doesn't seem to belong there...");
-  returnToTray(spriteEl);
-}
-
-function returnToTray(el) {
-  // Find an empty slot
-  const emptySlot = Array.from(document.querySelectorAll('.nc-slot')).find(s => s.children.length === 0);
-  if (emptySlot) {
-    el.style.position = 'relative';
-    el.style.left = '0';
-    el.style.top = '0';
-    el.style.transform = 'none';
-    el.style.zIndex = '1';
-    emptySlot.appendChild(el);
-  } else {
-    el.remove(); // Failsafe
-  }
 }
 
 function showToast(msg) {

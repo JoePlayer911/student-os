@@ -3,6 +3,7 @@ import { dioramaData } from './data/dioramas.js';
 import { resetGlobeView } from './globe.js';
 
 let isDioramaActive = false;
+let isDioramaGameMode = false;
 let currentDioramaContext = null;
 
 const getAssetUrl = (url) => {
@@ -53,7 +54,7 @@ export function initDioramaSystem() {
 
   // Parallax mouse movement
   document.addEventListener('mousemove', (e) => {
-    if (!isDioramaActive) return;
+    if (!isDioramaActive || isDioramaGameMode) return;
     
     // Calculate normalized coords (-1 to 1)
     const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -73,7 +74,7 @@ export function initDioramaSystem() {
 
   // Touch tracking for smartboards
   document.addEventListener('touchmove', (e) => {
-    if (!isDioramaActive || !e.touches || e.touches.length === 0) return;
+    if (!isDioramaActive || isDioramaGameMode || !e.touches || e.touches.length === 0) return;
     const touch = e.touches[0];
     
     const mouseX = (touch.clientX / window.innerWidth) * 2 - 1;
@@ -103,6 +104,7 @@ export function openDiorama(islandId, isGameMode = false) {
   }
 
   isDioramaActive = true;
+  isDioramaGameMode = isGameMode;
   const view = document.getElementById('diorama-view');
   const container = document.getElementById('diorama-layers-container');
   const bgLayer = document.querySelector('.bg-layer');
@@ -212,9 +214,15 @@ export function openDiorama(islandId, isGameMode = false) {
 
 export function closeDiorama() {
   isDioramaActive = false;
+  isDioramaGameMode = false;
   const view = document.getElementById('diorama-view');
   
   view.style.opacity = '0';
+  
+  // Wipe Nusantacraft UI to prevent bleeding into normal mode
+  const ncui = document.getElementById('nc-ui');
+  if (ncui) ncui.classList.add('hidden');
+  
   playSciFiSound('exit');
   
   // Reset the globe view

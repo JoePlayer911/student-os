@@ -1009,24 +1009,36 @@ header, nav, #bottom-bar, #panels-container {
   background-size: contain;
   background-position: center;
   background-repeat: no-repeat;
-  cursor: grab;
-  touch-action: none; 
+  cursor: pointer;
   filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
-  transition: transform 0.1s;
+  transition: opacity 0.3s, transform 0.1s;
 }
 
-.nc-draggable-sprite:active { cursor: grabbing; }
+.nc-draggable-sprite:active { transform: scale(0.9); }
 
 .nc-drop-target {
   position: absolute;
-  border: 2px dashed var(--accent-gold);
-  background: rgba(245, 200, 0, 0.2);
+  pointer-events: auto; /* enable clicking */
+  cursor: pointer;
+  border: 2px dashed rgba(245, 200, 0, 0.5);
+  background: rgba(245, 200, 0, 0.1);
   border-radius: 12px;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  animation: pulse-border 2s infinite;
+  transition: all 0.2s;
+}
+
+.nc-drop-target:hover {
+  background: rgba(245, 200, 0, 0.3);
+}
+
+.nc-target-selected {
+  border: 3px solid #00ff88;
+  background: rgba(0, 255, 136, 0.3) !important;
+  box-shadow: 0 0 30px rgba(0, 255, 136, 0.6) inset;
+  animation: pulse-selected 1s infinite alternate;
 }
 
 .nc-drop-target::after {
@@ -1038,9 +1050,9 @@ header, nav, #bottom-bar, #panels-container {
   text-shadow: 1px 1px 2px black;
 }
 
-@keyframes pulse-border {
-  0%, 100% { box-shadow: 0 0 10px rgba(245, 200, 0, 0.5) inset; }
-  50% { box-shadow: 0 0 30px rgba(245, 200, 0, 0.8) inset; }
+@keyframes pulse-selected {
+  from { box-shadow: 0 0 10px rgba(0, 255, 136, 0.6) inset; transform: scale(1); }
+  to { box-shadow: 0 0 40px rgba(0, 255, 136, 0.8) inset; transform: scale(1.05); }
 }
 
 #nc-feedback-toast {
