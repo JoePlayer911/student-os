@@ -3,6 +3,7 @@
 export function initIntroSequence() {
   const introContainer = document.getElementById('cinematic-intro');
   const video = document.getElementById('intro-video');
+  const blackLayer = document.getElementById('intro-black-layer');
   const titlesContainer = document.querySelector('.intro-titles');
   const pressBtn = document.getElementById('press-to-soar');
   
@@ -22,11 +23,21 @@ export function initIntroSequence() {
   function killIntro() {
     if (removed) return;
     removed = true;
-    console.log('[Intro] Killing intro overlay');
+
+    // 1. Kill the video instantly
     video.pause();
-    video.src = ''; // force stop all video activity
-    introContainer.style.display = 'none';
-    introContainer.remove();
+    video.src = '';
+    video.style.display = 'none';
+
+    // 2. The black layer is now revealed — fade IT out over 1 second
+    if (blackLayer) {
+      blackLayer.classList.add('fade-out');
+      setTimeout(() => {
+        introContainer.remove();
+      }, 1100);
+    } else {
+      introContainer.remove();
+    }
   }
 
   video.addEventListener('canplay', showButton);
@@ -41,28 +52,18 @@ export function initIntroSequence() {
     video.classList.add('video-visible');
     
     video.play().then(() => {
-      console.log('[Intro] Video playing, duration:', video.duration);
-      
-      // METHOD 1: If we know the duration, set a hard timeout
       if (video.duration && isFinite(video.duration)) {
-        const ms = video.duration * 1000;
-        console.log('[Intro] Setting hard timeout:', ms, 'ms');
-        setTimeout(killIntro, ms + 500); // small buffer
+        setTimeout(killIntro, video.duration * 1000 + 500);
       }
-      
-      // METHOD 2: Poll every second checking video.ended
       const poll = setInterval(() => {
         if (removed) { clearInterval(poll); return; }
         if (video.ended || video.paused) {
-          console.log('[Intro] Poll detected video stopped');
           clearInterval(poll);
           killIntro();
         }
       }, 1000);
-      
     }).catch(() => killIntro());
   });
 
-  // METHOD 3: Standard ended event
   video.onended = killIntro;
 }

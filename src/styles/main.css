@@ -1113,7 +1113,7 @@ header, nav, #bottom-bar, #panels-container {
    ========================================= */
 
 #cinematic-intro {
-  position: absolute;
+  position: fixed;
   top: 0; left: 0; width: 100vw; height: 100vh;
   background-color: #000;
   z-index: 9999;
@@ -1122,7 +1122,18 @@ header, nav, #bottom-bar, #panels-container {
   justify-content: center;
   overflow: hidden;
   cursor: pointer;
-  transition: opacity 2s ease-in-out;
+}
+
+#intro-black-layer {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  background: #000;
+  z-index: 1;
+  transition: opacity 1s ease-in-out;
+}
+
+#intro-black-layer.fade-out {
+  opacity: 0;
 }
 
 #cinematic-intro.intro-fade-out {
