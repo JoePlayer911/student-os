@@ -117,7 +117,7 @@ export const dioramaData = {
       }
     ]
   },
-  java: {
+  jawa: {
     title: "JAWA",
     bgColor: "#4D7896",
     layers: [

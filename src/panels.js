@@ -8,6 +8,11 @@ export function initPanels() {
     createPanel(container, 'settings-panel', 'SYSTEM SETTINGS', `
         <div style="font-family: var(--font-body); color: var(--text-main);">
             <div style="margin-bottom: 20px;">
+                <label style="display: block; margin-bottom: 5px; color: var(--accent-gold); font-size: 1.1rem;">DISPLAY UI SCALE</label>
+                <input type="range" id="ui-scale-slider" min="0.8" max="2.5" step="0.1" value="1" style="width: 100%;">
+            </div>
+            
+            <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 5px; color: var(--accent-gold); font-size: 1.1rem;">AUDIO OUTPUT</label>
                 <input type="range" min="0" max="100" value="50" style="width: 100%;">
             </div>
@@ -28,6 +33,14 @@ export function initPanels() {
     // Create Vocabulary Panel
     createPanel(container, 'vocab-panel', 'VOCABULARY BOOK', `<div id="vocab-content-area"></div>`, '500px');
     initVocabSystem('vocab-content-area');
+
+    // Initialize Settings Event Listeners
+    const scaleSlider = document.getElementById('ui-scale-slider');
+    if (scaleSlider) {
+        scaleSlider.addEventListener('input', (e) => {
+            document.documentElement.style.fontSize = `${e.target.value * 100}%`;
+        });
+    }
 
     // Create generic placeholders for others
     ['games-panel', 'info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
