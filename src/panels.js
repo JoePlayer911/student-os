@@ -9,7 +9,7 @@ export function initPanels() {
         <div style="font-family: var(--font-body); color: var(--text-main);">
             <div style="margin-bottom: 20px;">
                 <label style="display: block; margin-bottom: 5px; color: var(--accent-gold); font-size: 1.1rem;">DISPLAY UI SCALE</label>
-                <input type="range" id="ui-scale-slider" min="0.8" max="2.5" step="0.1" value="1" style="width: 100%;">
+                <input type="range" id="ui-scale-slider" min="0.1" max="2.5" step="0.1" value="1" style="width: 100%;">
             </div>
             
             <div style="margin-bottom: 20px;">

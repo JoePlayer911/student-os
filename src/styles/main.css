@@ -918,7 +918,7 @@ header, nav, #bottom-bar, #panels-container {
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {
      /* Scale down the base rem font-size which drives everything else */
-     font-size: 65%; 
+     font-size: 10%; 
   }
   
   .sidebar-btn {
