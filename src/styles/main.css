@@ -938,6 +938,164 @@ header, nav, #bottom-bar, #panels-container {
   #orientation-warning { display: flex; }
 }
 
+/* =========================================
+   NUSANTACRAFT GAME UI
+   ========================================= */
+
+#nc-ui {
+  position: absolute;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: 500;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+#nc-ui.hidden {
+  display: none !important;
+}
+
+#nc-inventory-wrapper {
+  background: rgba(10, 15, 25, 0.85);
+  border-top: 2px solid var(--accent-cyan);
+  pointer-events: auto;
+  box-shadow: 0 -10px 30px rgba(0, 240, 255, 0.2);
+  display: flex;
+  flex-direction: column;
+  backdrop-filter: blur(10px);
+}
+
+.nc-inventory-header {
+  text-align: center;
+  font-family: var(--font-scifi);
+  color: var(--accent-cyan);
+  font-size: 0.8rem;
+  letter-spacing: 2px;
+  padding: 5px 0;
+  background: rgba(0, 240, 255, 0.1);
+  border-bottom: 1px solid rgba(0, 240, 255, 0.3);
+}
+
+#nc-inventory-track {
+  display: flex;
+  gap: 15px;
+  padding: 15px 20px;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-x: contain;
+}
+
+#nc-inventory-track::-webkit-scrollbar { height: 8px; }
+#nc-inventory-track::-webkit-scrollbar-thumb { background-color: var(--accent-cyan); border-radius: 4px; }
+
+.nc-slot {
+  flex-shrink: 0;
+  width: 100px;
+  height: 100px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px dashed rgba(255, 255, 255, 0.2);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.nc-draggable-sprite {
+  width: 90px;
+  height: 90px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+  cursor: grab;
+  touch-action: none; 
+  filter: drop-shadow(0 0 5px rgba(0, 0, 0, 0.8));
+  transition: transform 0.1s;
+}
+
+.nc-draggable-sprite:active { cursor: grabbing; }
+
+.nc-drop-target {
+  position: absolute;
+  border: 2px dashed var(--accent-gold);
+  background: rgba(245, 200, 0, 0.2);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  animation: pulse-border 2s infinite;
+}
+
+.nc-drop-target::after {
+  content: attr(data-hint);
+  color: white;
+  font-family: var(--font-primary);
+  font-size: 0.9rem;
+  padding: 5px;
+  text-shadow: 1px 1px 2px black;
+}
+
+@keyframes pulse-border {
+  0%, 100% { box-shadow: 0 0 10px rgba(245, 200, 0, 0.5) inset; }
+  50% { box-shadow: 0 0 30px rgba(245, 200, 0, 0.8) inset; }
+}
+
+#nc-feedback-toast {
+  position: absolute;
+  top: 30%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(255, 50, 50, 0.9);
+  color: white;
+  padding: 15px 30px;
+  border-radius: 8px;
+  font-family: var(--font-scifi);
+  font-size: 1.2rem;
+  pointer-events: none;
+  box-shadow: 0 0 30px rgba(255, 0, 0, 0.5);
+  transition: opacity 0.3s;
+}
+
+#nc-victory-modal {
+  position: absolute;
+  top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  background: rgba(10, 20, 30, 0.95);
+  border: 2px solid var(--accent-gold);
+  padding: 40px;
+  border-radius: 12px;
+  text-align: center;
+  box-shadow: 0 0 50px rgba(245, 200, 0, 0.3);
+  pointer-events: auto;
+}
+
+#nc-victory-modal h2 {
+  font-family: var(--font-scifi);
+  color: var(--accent-gold);
+  font-size: 2.5rem;
+  margin-bottom: 30px;
+}
+
+.nc-victory-buttons { display: flex; gap: 20px; justify-content: center; }
+
+.nc-victory-buttons button {
+  padding: 15px 25px;
+  background: transparent;
+  border: 1px solid var(--accent-cyan);
+  color: var(--accent-cyan);
+  font-family: var(--font-scifi);
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.nc-victory-buttons button:hover {
+  background: var(--accent-cyan);
+  color: black;
+}
+
 /* Scale UI down roughly by half for mobile landscape */
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {

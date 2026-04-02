@@ -91,6 +91,24 @@
         <p id="anno-desc">Short description of the cultural item...</p>
         <button id="anno-close">&times;</button>
       </div>
+
+      <!-- Nusantacraft UI Overlays -->
+      <div id="nc-ui" class="hidden">
+        <div id="nc-feedback-toast" class="hidden"></div>
+        <div id="nc-inventory-wrapper">
+          <div class="nc-inventory-header">DRAG ITEMS TO THE EXACT LOCATION</div>
+          <div id="nc-inventory-track" class="nc-carousel-fluid">
+            <!-- draggable items injected here -->
+          </div>
+        </div>
+        <div id="nc-victory-modal" class="hidden">
+          <h2>ISLAND RESTORED!</h2>
+          <div class="nc-victory-buttons">
+            <button id="nc-btn-playagain">PLAY AGAIN</button>
+            <button id="nc-btn-orbit">RETURN TO ORBIT</button>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
   <script type="module" src="/src/main.js"></script>

@@ -1,5 +1,6 @@
 import { initRandomPicker } from './random-picker.js';
 import { initVocabSystem } from './vocabulary.js';
+import { startNusantacraft } from './game/nusantacraft.js';
 
 export function initPanels() {
     const container = document.getElementById('panels-container');
@@ -43,7 +44,7 @@ export function initPanels() {
     }
 
     // Create generic placeholders for others
-    ['games-panel', 'info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
+    ['info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
         const title = id.replace('-panel', '').toUpperCase();
         createPanel(container, id, `${title} MODULE`, `
              <div style="text-align: center; padding: 40px; font-family: var(--font-scifi); color: var(--text-muted);">
@@ -53,6 +54,26 @@ export function initPanels() {
              </div>
         `);
     });
+
+    // Create Games Panel for Nusantacraft
+    createPanel(container, 'games-panel', 'GAMES MODULE', `
+        <div style="text-align: center; padding: 20px; font-family: var(--font-scifi);">
+            <div style="font-size: 3rem; margin-bottom: 10px;">🎮</div>
+            <h2 style="color: var(--accent-gold); margin-bottom: 20px;">NUSANTACRAFT</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
+                Restore the diorama by dragging the correct elements to their rightful places across the archipelago.
+            </p>
+            <button id="btn-launch-nusantacraft" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-cyan); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi);">LAUNCH EXPEDITION</button>
+        </div>
+    `);
+
+    // Ensure the dom is attached before querying
+    setTimeout(() => {
+        const launchBtn = document.getElementById('btn-launch-nusantacraft');
+        if (launchBtn) {
+            launchBtn.addEventListener('click', startNusantacraft);
+        }
+    }, 100);
 }
 
 function createPanel(container, id, title, contentHTML, width = '400px') {

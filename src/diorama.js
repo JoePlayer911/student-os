@@ -95,7 +95,7 @@ export function initDioramaSystem() {
   });
 }
 
-export function openDiorama(islandId) {
+export function openDiorama(islandId, isGameMode = false) {
   const data = dioramaData[islandId];
   if (!data) {
     console.warn("No diorama data for:", islandId);
@@ -120,6 +120,8 @@ export function openDiorama(islandId) {
       if (layerData.url) {
         bgLayer.style.backgroundImage = `url(${getAssetUrl(layerData.url)})`;
         bgLayer.style.backgroundColor = 'transparent';
+        if (layerData.bgSize) bgLayer.style.backgroundSize = layerData.bgSize;
+        if (layerData.bgPosition) bgLayer.style.backgroundPosition = layerData.bgPosition;
       } else {
         bgLayer.style.backgroundImage = 'none';
         bgLayer.style.backgroundColor = layerData.colorPlaceholder || data.bgColor;
@@ -142,12 +144,30 @@ export function openDiorama(islandId) {
     layerEl.style.height = layerData.height || '100%';
     layerEl.style.top = layerData.top || '0';
     layerEl.style.left = layerData.left || '0';
+    
+    if (layerData.bgSize) layerEl.style.backgroundSize = layerData.bgSize;
+    if (layerData.bgPosition) layerEl.style.backgroundPosition = layerData.bgPosition;
 
-    if (layerData.url) {
-      layerEl.style.backgroundImage = `url(${getAssetUrl(layerData.url)})`;
+    if (isGameMode && layerData.url) {
+      // Game Mode: Strip the image and convert into a placeholder drop zone
+      layerEl.classList.add('nc-drop-target');
+      layerEl.setAttribute('data-expected-url', layerData.url);
+      
+      // Determine what it is for the hint (very basic mapping)
+      let typeHint = "Item";
+      if (layerData.id.includes('house') || layerData.id.includes('tongkonan') || layerData.id.includes('honai')) typeHint = "House";
+      else if (layerData.id.includes('people') || layerData.id.includes('dance')) typeHint = "People";
+      else if (layerData.id.includes('animal') || layerData.id.includes('tiger') || layerData.id.includes('crocodile') || layerData.id.includes('snake')) typeHint = "Animal";
+      
+      layerEl.setAttribute('data-hint', `${data.title} ${typeHint}`);
     } else {
-      layerEl.style.backgroundColor = layerData.colorPlaceholder;
-      layerEl.style.opacity = '0.7'; // So we can see through overlapping placeholders
+      // Normal Mode
+      if (layerData.url) {
+        layerEl.style.backgroundImage = `url(${getAssetUrl(layerData.url)})`;
+      } else {
+        layerEl.style.backgroundColor = layerData.colorPlaceholder;
+        layerEl.style.opacity = '0.7'; // So we can see through overlapping placeholders
+      }
     }
 
     // Add hotspots to this layer
