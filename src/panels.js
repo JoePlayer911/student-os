@@ -60,10 +60,7 @@ function createPanel(container, id, title, contentHTML, width = '400px') {
     el.className = 'panel';
     el.id = id;
     
-    // Position it centrally by default
-    el.style.top = '50%';
-    el.style.left = '50%';
-    el.style.transform = 'translate(-50%, -40%)';
+    // Position it centrally by default (CSS handles this now)
     el.style.width = width;
 
     el.innerHTML = `
@@ -88,8 +85,6 @@ export function openPanel(panelId) {
     const panel = document.getElementById(panelId);
     if (panel) {
         panel.classList.add('active');
-        // Hacky way to fix translation state from active class in main CSS if needed
-        panel.style.transform = 'translate(-50%, -50%)'; 
     }
 }
 
@@ -97,6 +92,5 @@ export function closeAllPanels() {
     const panels = document.querySelectorAll('.panel');
     panels.forEach(p => {
         p.classList.remove('active');
-        p.style.transform = 'translate(-50%, -40%)';
     });
 }
