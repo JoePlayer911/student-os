@@ -30,11 +30,14 @@ export function initIntroSequence() {
     video.style.display = 'none';
 
     // 2. The black layer is now revealed — fade IT out over 1 second
+    // 2. Make parent transparent so the black layer fade actually reveals the app
+    introContainer.style.backgroundColor = 'transparent';
+
     if (blackLayer) {
       blackLayer.classList.add('fade-out');
       setTimeout(() => {
         introContainer.remove();
-      }, 1100);
+      }, 3200);
     } else {
       introContainer.remove();
     }

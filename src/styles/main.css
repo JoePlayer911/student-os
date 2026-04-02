@@ -3,19 +3,19 @@
   --bg-dark: #0a0a0c;
   --bg-panel: rgba(15, 15, 20, 0.6);
   --bg-panel-solid: #1c1c20;
-  
+
   --accent-gold: #f5c800;
   --accent-gold-dim: rgba(245, 200, 0, 0.3);
   --accent-cyan: #00f0ff;
   --accent-alert: #ff2a2a;
-  
+
   --text-main: #f0f0f5;
   --text-muted: #8c8c9a;
-  
+
   /* Fonts */
   --font-scifi: 'Orbitron', sans-serif;
   --font-body: 'Inter', sans-serif;
-  
+
   /* Shadows & Glows */
   --glow-gold: 0 0 10px rgba(245, 200, 0, 0.5);
   --glow-cyan: 0 0 10px rgba(0, 240, 255, 0.5);
@@ -25,14 +25,16 @@
   box-sizing: border-box;
   margin: 0;
   padding: 0;
-  user-select: none; /* Prevent text selection for touch displays */
+  user-select: none;
+  /* Prevent text selection for touch displays */
 }
 
 body {
   background-color: var(--bg-dark);
   color: var(--text-main);
   font-family: var(--font-body);
-  overflow: hidden; /* Prevent scrolling */
+  overflow: hidden;
+  /* Prevent scrolling */
   width: 100vw;
   height: 100vh;
 }
@@ -59,14 +61,23 @@ body {
 /* ---------------------------------
    HUD OVERLAYS
 --------------------------------- */
-header, nav, #bottom-bar, #panels-container {
+header,
+nav,
+#bottom-bar,
+#panels-container {
   z-index: 10;
   position: absolute;
-  pointer-events: none; /* Allow clicks to pass through empty space */
+  pointer-events: none;
+  /* Allow clicks to pass through empty space */
 }
 
 /* Elements that should capture clicks */
-.logo, .stat, .sidebar-btn, .bottom-content, .action-btn, .panel {
+.logo,
+.stat,
+.sidebar-btn,
+.bottom-content,
+.action-btn,
+.panel {
   pointer-events: auto;
 }
 
@@ -101,7 +112,7 @@ header, nav, #bottom-bar, #panels-container {
   font-size: 2rem;
   letter-spacing: 3px;
   text-transform: uppercase;
-  text-shadow: 0 0 5px rgba(255,255,255,0.3);
+  text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
 }
 
 .top-stats {
@@ -163,7 +174,7 @@ header, nav, #bottom-bar, #panels-container {
 .sidebar-btn {
   background: var(--bg-panel);
   backdrop-filter: blur(8px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   color: var(--text-main);
   padding: 14px 22px;
   min-width: 180px;
@@ -186,7 +197,7 @@ header, nav, #bottom-bar, #panels-container {
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
   transition: left 0.5s ease;
 }
 
@@ -213,8 +224,10 @@ header, nav, #bottom-bar, #panels-container {
 #sidebar-right .sidebar-btn {
   transform: skewX(-15deg);
 }
-#sidebar-right .sidebar-btn > * {
-  transform: skewX(15deg); /* Unskew content */
+
+#sidebar-right .sidebar-btn>* {
+  transform: skewX(15deg);
+  /* Unskew content */
 }
 
 /* ---------------------------------
@@ -227,10 +240,10 @@ header, nav, #bottom-bar, #panels-container {
   align-items: stretch;
   background: var(--bg-panel);
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255,255,255,0.1);
+  border: 1px solid rgba(255, 255, 255, 0.1);
   border-left: 4px solid var(--accent-gold);
   border-bottom: 2px solid var(--accent-gold);
-  box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   clip-path: polygon(0 0, 100% 0, 100% calc(100% - 15px), calc(100% - 15px) 100%, 0 100%);
   min-width: 400px;
 }
@@ -291,7 +304,7 @@ header, nav, #bottom-bar, #panels-container {
   justify-content: center;
   padding: 0 20px;
   background: rgba(245, 200, 0, 0.1);
-  border-left: 1px solid rgba(255,255,255,0.1);
+  border-left: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .action-btn {
@@ -323,7 +336,10 @@ header, nav, #bottom-bar, #panels-container {
 --------------------------------- */
 #panels-container {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
 }
 
@@ -337,7 +353,7 @@ header, nav, #bottom-bar, #panels-container {
   border: 1px solid var(--accent-cyan);
   border-radius: 2px;
   padding: 30px;
-  box-shadow: 0 0 20px rgba(0,0,0,0.8), var(--glow-cyan);
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.8), var(--glow-cyan);
   pointer-events: none;
   opacity: 0;
   visibility: hidden;
@@ -414,7 +430,10 @@ header, nav, #bottom-bar, #panels-container {
 .marker-dot::after {
   content: '';
   position: absolute;
-  top: -5px; left: -5px; right: -5px; bottom: -5px;
+  top: -5px;
+  left: -5px;
+  right: -5px;
+  bottom: -5px;
   border-radius: 50%;
   border: 1px solid var(--accent-gold);
   animation: pulse 2s infinite;
@@ -425,16 +444,23 @@ header, nav, #bottom-bar, #panels-container {
   font-family: var(--font-scifi);
   font-size: 16px;
   color: white;
-  background: rgba(0,0,0,0.6);
+  background: rgba(0, 0, 0, 0.6);
   padding: 3px 8px;
   border-radius: 2px;
-  border: 1px solid rgba(255,255,255,0.2);
+  border: 1px solid rgba(255, 255, 255, 0.2);
   white-space: nowrap;
 }
 
 @keyframes pulse {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 /* ---------------------------------
@@ -510,7 +536,7 @@ header, nav, #bottom-bar, #panels-container {
 }
 
 .picker-input {
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--accent-cyan);
   color: var(--accent-cyan);
   font-family: var(--font-scifi);
@@ -589,8 +615,8 @@ header, nav, #bottom-bar, #panels-container {
 
 .picker-history {
   padding: 15px;
-  background: rgba(0,0,0,0.2);
-  border-top: 1px dashed rgba(255,255,255,0.1);
+  background: rgba(0, 0, 0, 0.2);
+  border-top: 1px dashed rgba(255, 255, 255, 0.1);
 }
 
 .picker-history-list {
@@ -612,25 +638,34 @@ header, nav, #bottom-bar, #panels-container {
 
 #diorama-view {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background-color: var(--bg-dark);
   z-index: 100;
   overflow: hidden;
   transition: opacity 0.8s ease;
-  opacity: 1; /* For transition logic later */
+  opacity: 1;
+  /* For transition logic later */
 }
 
 /* Base style for layers to enable parallax */
 .diorama-layer {
   position: absolute;
-  top: -10%; left: -10%;
-  width: 120%; height: 120%; /* Larger than screen to allow movement without seeing edges */
+  top: -10%;
+  left: -10%;
+  width: 120%;
+  height: 120%;
+  /* Larger than screen to allow movement without seeing edges */
   background-position: center;
   background-repeat: no-repeat;
-  background-size: contain; /* or cover depending on the asset */
+  background-size: contain;
+  /* or cover depending on the asset */
   transition: transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1);
   will-change: transform;
-  pointer-events: none; /* Let clicks pass to hot-spots */
+  pointer-events: none;
+  /* Let clicks pass to hot-spots */
 }
 
 /* Temporary Placeholders - Replace background with transparent PNGs */
@@ -665,24 +700,45 @@ header, nav, #bottom-bar, #panels-container {
   cursor: help;
   animation: blink 2s infinite;
   transition: transform 0.3s cubic-bezier(0.2, 1.2, 0.3, 1), opacity 0.3s;
-  pointer-events: auto !important; /* Allow hover */
-  opacity: 0; /* invisible until hovered */
+  pointer-events: auto !important;
+  /* Allow hover */
+  opacity: 0;
+  /* invisible until hovered */
 }
 
 .volcano-hover:hover {
-  opacity: 1; /* fade in */
+  opacity: 1;
+  /* fade in */
   animation: blinkFast 0.5s infinite;
   transform: scale(1.5) !important;
 }
 
 @keyframes blink {
-  0%, 100% { filter: drop-shadow(0 0 5px rgba(255, 40, 40, 0.8)); opacity: 0; }
-  50% { filter: drop-shadow(0 0 20px rgba(255, 40, 40, 1)); opacity: 0.5; }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 5px rgba(255, 40, 40, 0.8));
+    opacity: 0;
+  }
+
+  50% {
+    filter: drop-shadow(0 0 20px rgba(255, 40, 40, 1));
+    opacity: 0.5;
+  }
 }
 
 @keyframes blinkFast {
-  0%, 100% { filter: drop-shadow(0 0 10px rgba(255, 40, 40, 0.8)); opacity: 1; }
-  50% { filter: drop-shadow(0 0 30px rgba(255, 40, 40, 1)); opacity: 0.8; }
+
+  0%,
+  100% {
+    filter: drop-shadow(0 0 10px rgba(255, 40, 40, 0.8));
+    opacity: 1;
+  }
+
+  50% {
+    filter: drop-shadow(0 0 30px rgba(255, 40, 40, 1));
+    opacity: 0.8;
+  }
 }
 
 /* Annotation Icon inside Hotspot */
@@ -692,24 +748,29 @@ header, nav, #bottom-bar, #panels-container {
   font-weight: 700;
   color: #fff;
   background: var(--accent-gold);
-  width: 30px; height: 30px;
+  width: 30px;
+  height: 30px;
   border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 0 0 10px rgba(0,0,0,0.5);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
   opacity: 0.8;
 }
 
 #diorama-layers-container {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 /* Diorama UI */
 #diorama-exit-btn {
   position: absolute;
-  top: 30px; left: 30px;
+  top: 30px;
+  left: 30px;
   z-index: 105;
   background: rgba(10, 10, 12, 0.8);
   backdrop-filter: blur(5px);
@@ -731,19 +792,21 @@ header, nav, #bottom-bar, #panels-container {
 
 #diorama-title {
   position: absolute;
-  top: 30px; right: 40px;
+  top: 30px;
+  right: 40px;
   z-index: 105;
   font-family: var(--font-scifi);
   font-size: 3rem;
   color: #fff;
   text-transform: uppercase;
-  text-shadow: 2px 2px 10px rgba(0,0,0,0.8), var(--glow-gold);
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.8), var(--glow-gold);
   letter-spacing: 5px;
 }
 
 #diorama-annotation {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   z-index: 110;
   background: rgba(15, 15, 20, 0.95);
@@ -752,7 +815,7 @@ header, nav, #bottom-bar, #panels-container {
   border-radius: 8px;
   padding: 40px;
   width: 500px;
-  box-shadow: 0 10px 40px rgba(0,0,0,0.8), var(--glow-gold);
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.8), var(--glow-gold);
   color: var(--text-main);
   text-align: center;
 }
@@ -772,7 +835,8 @@ header, nav, #bottom-bar, #panels-container {
 
 #anno-close {
   position: absolute;
-  top: 10px; right: 20px;
+  top: 10px;
+  right: 20px;
   background: none;
   border: none;
   color: var(--text-muted);
@@ -800,7 +864,7 @@ header, nav, #bottom-bar, #panels-container {
 #vocab-search {
   width: 100%;
   padding: 12px 15px;
-  background: rgba(0,0,0,0.5);
+  background: rgba(0, 0, 0, 0.5);
   border: 1px solid var(--accent-cyan);
   border-radius: 4px;
   color: #fff;
@@ -823,11 +887,13 @@ header, nav, #bottom-bar, #panels-container {
 .vocab-list::-webkit-scrollbar {
   width: 8px;
 }
+
 .vocab-list::-webkit-scrollbar-track {
-  background: rgba(255, 255, 255, 0.05); 
+  background: rgba(255, 255, 255, 0.05);
 }
+
 .vocab-list::-webkit-scrollbar-thumb {
-  background: var(--accent-cyan); 
+  background: var(--accent-cyan);
   border-radius: 4px;
 }
 
@@ -844,7 +910,7 @@ header, nav, #bottom-bar, #panels-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: rgba(0,0,0,0.3);
+  background: rgba(0, 0, 0, 0.3);
   padding: 15px;
   margin-bottom: 10px;
   border-radius: 4px;
@@ -909,7 +975,10 @@ header, nav, #bottom-bar, #panels-container {
 #orientation-warning {
   display: none;
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background: var(--bg-dark);
   z-index: 9999;
   flex-direction: column;
@@ -927,15 +996,28 @@ header, nav, #bottom-bar, #panels-container {
 }
 
 @keyframes rotatePhone {
-  0% { transform: rotate(0deg); }
-  50% { transform: rotate(-90deg); }
-  100% { transform: rotate(-90deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+
+  50% {
+    transform: rotate(-90deg);
+  }
+
+  100% {
+    transform: rotate(-90deg);
+  }
 }
 
 /* Show Warning when in Portrait on small screens */
 @media screen and (max-width: 1000px) and (orientation: portrait) {
-  #app { display: none !important; }
-  #orientation-warning { display: flex; }
+  #app {
+    display: none !important;
+  }
+
+  #orientation-warning {
+    display: flex;
+  }
 }
 
 /* =========================================
@@ -944,7 +1026,10 @@ header, nav, #bottom-bar, #panels-container {
 
 #nc-ui {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   pointer-events: none;
   z-index: 500;
   display: flex;
@@ -987,8 +1072,14 @@ header, nav, #bottom-bar, #panels-container {
   overscroll-behavior-x: contain;
 }
 
-#nc-inventory-track::-webkit-scrollbar { height: 8px; }
-#nc-inventory-track::-webkit-scrollbar-thumb { background-color: var(--accent-cyan); border-radius: 4px; }
+#nc-inventory-track::-webkit-scrollbar {
+  height: 8px;
+}
+
+#nc-inventory-track::-webkit-scrollbar-thumb {
+  background-color: var(--accent-cyan);
+  border-radius: 4px;
+}
 
 .nc-slot {
   flex-shrink: 0;
@@ -1014,11 +1105,14 @@ header, nav, #bottom-bar, #panels-container {
   transition: opacity 0.3s, transform 0.1s;
 }
 
-.nc-draggable-sprite:active { transform: scale(0.9); }
+.nc-draggable-sprite:active {
+  transform: scale(0.9);
+}
 
 .nc-drop-target {
   position: absolute;
-  pointer-events: auto; /* enable clicking */
+  pointer-events: auto;
+  /* enable clicking */
   cursor: pointer;
   border: 2px dashed rgba(245, 200, 0, 0.5);
   background: rgba(245, 200, 0, 0.1);
@@ -1051,13 +1145,21 @@ header, nav, #bottom-bar, #panels-container {
 }
 
 @keyframes pulse-selected {
-  from { box-shadow: 0 0 10px rgba(0, 255, 136, 0.6) inset; transform: scale(1); }
-  to { box-shadow: 0 0 40px rgba(0, 255, 136, 0.8) inset; transform: scale(1.05); }
+  from {
+    box-shadow: 0 0 10px rgba(0, 255, 136, 0.6) inset;
+    transform: scale(1);
+  }
+
+  to {
+    box-shadow: 0 0 40px rgba(0, 255, 136, 0.8) inset;
+    transform: scale(1.05);
+  }
 }
 
 #nc-feedback-toast {
   position: absolute;
-  top: 30%; left: 50%;
+  top: 30%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(255, 50, 50, 0.9);
   color: white;
@@ -1072,7 +1174,8 @@ header, nav, #bottom-bar, #panels-container {
 
 #nc-victory-modal {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
   background: rgba(10, 20, 30, 0.95);
   border: 2px solid var(--accent-gold);
@@ -1090,7 +1193,11 @@ header, nav, #bottom-bar, #panels-container {
   margin-bottom: 30px;
 }
 
-.nc-victory-buttons { display: flex; gap: 20px; justify-content: center; }
+.nc-victory-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
 
 .nc-victory-buttons button {
   padding: 15px 25px;
@@ -1114,7 +1221,10 @@ header, nav, #bottom-bar, #panels-container {
 
 #cinematic-intro {
   position: fixed;
-  top: 0; left: 0; width: 100vw; height: 100vh;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
   background-color: #000;
   z-index: 9999;
   display: flex;
@@ -1126,10 +1236,13 @@ header, nav, #bottom-bar, #panels-container {
 
 #intro-black-layer {
   position: absolute;
-  top: 0; left: 0; width: 100%; height: 100%;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
   background: #000;
   z-index: 1;
-  transition: opacity 1s ease-in-out;
+  transition: opacity 3s ease-in-out;
 }
 
 #intro-black-layer.fade-out {
@@ -1143,13 +1256,17 @@ header, nav, #bottom-bar, #panels-container {
 
 #intro-video {
   position: absolute;
-  top: 50%; left: 50%;
+  top: 50%;
+  left: 50%;
   transform: translate(-50%, -50%);
-  min-width: 100%; min-height: 100%;
-  width: auto; height: auto;
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
   opacity: 0;
   transition: opacity 1s ease-in-out;
   pointer-events: none;
+  z-index: 2;
 }
 
 #intro-video.video-visible {
@@ -1188,33 +1305,41 @@ header, nav, #bottom-bar, #panels-container {
 }
 
 @keyframes intro-pulse {
-  0%, 100% { opacity: 0.3; }
-  50% { opacity: 1; text-shadow: 0 0 10px var(--accent-cyan); }
+
+  0%,
+  100% {
+    opacity: 0.3;
+  }
+
+  50% {
+    opacity: 1;
+    text-shadow: 0 0 10px var(--accent-cyan);
+  }
 }
 
 /* Scale UI down roughly by half for mobile landscape */
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {
-     /* Scale down the base rem font-size which drives everything else */
-     /* 10% is unreadable text, 35% shrinks UI while keeping text legible */
-     font-size: 35%; 
+    /* Scale down the base rem font-size which drives everything else */
+    /* 10% is unreadable text, 35% shrinks UI while keeping text legible */
+    font-size: 35%;
   }
-  
+
   .sidebar-btn {
     min-width: 120px;
   }
-  
+
   /* Ensure panels don't overflow small screens */
   .panel {
-     max-width: 90vw !important;
-     max-height: 90vh !important;
+    max-width: 90vw !important;
+    max-height: 90vh !important;
   }
-  
+
   #diorama-annotation {
-     width: 80vw;
+    width: 80vw;
   }
-  
+
   .picker-result {
-     height: 80px;
+    height: 80px;
   }
 }
