@@ -4,6 +4,13 @@ import { dioramaData } from './data/dioramas.js';
 let isDioramaActive = false;
 let currentDioramaContext = null;
 
+const getAssetUrl = (url) => {
+  if (url && url.startsWith('/assets/')) {
+    return import.meta.env.BASE_URL + url.substring(1);
+  }
+  return url;
+};
+
 export function initDioramaSystem() {
   const exitBtn = document.getElementById('diorama-exit-btn');
   const view = document.getElementById('diorama-view');
@@ -79,7 +86,7 @@ export function openDiorama(islandId) {
     // If it's the background layer, we just use the global bg layer for simplicity
     if (layerData.id.startsWith('bg-')) {
       if (layerData.url) {
-        bgLayer.style.backgroundImage = `url(${layerData.url})`;
+        bgLayer.style.backgroundImage = `url(${getAssetUrl(layerData.url)})`;
         bgLayer.style.backgroundColor = 'transparent';
       } else {
         bgLayer.style.backgroundImage = 'none';
@@ -99,7 +106,7 @@ export function openDiorama(islandId) {
     layerEl.style.left = layerData.left || '0';
 
     if (layerData.url) {
-      layerEl.style.backgroundImage = `url(${layerData.url})`;
+      layerEl.style.backgroundImage = `url(${getAssetUrl(layerData.url)})`;
     } else {
       layerEl.style.backgroundColor = layerData.colorPlaceholder;
       layerEl.style.opacity = '0.7'; // So we can see through overlapping placeholders
