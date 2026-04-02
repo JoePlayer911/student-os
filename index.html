@@ -63,6 +63,26 @@
 
     <!-- Overlays / Modals -->
     <div id="panels-container"></div>
+    
+    <!-- 2.5D Diorama View -->
+    <div id="diorama-view" class="hidden">
+      <!-- Background / Sky Layer -->
+      <div class="diorama-layer bg-layer" data-speed="0.1"></div>
+      
+      <!-- Content layers injected dynamically here -->
+      <div id="diorama-layers-container"></div>
+      
+      <!-- Diorama UI Overlay -->
+      <button id="diorama-exit-btn">⮜ RETURN TO ORBIT</button>
+      <div id="diorama-title">ISLAND NAME</div>
+      
+      <!-- Annotation Popup -->
+      <div id="diorama-annotation" class="hidden">
+        <h3 id="anno-title">Item Name</h3>
+        <p id="anno-desc">Short description of the cultural item...</p>
+        <button id="anno-close">&times;</button>
+      </div>
+    </div>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>

@@ -1,4 +1,5 @@
 import { initRandomPicker } from './random-picker.js';
+import { initVocabSystem } from './vocabulary.js';
 
 export function initPanels() {
     const container = document.getElementById('panels-container');
@@ -24,8 +25,12 @@ export function initPanels() {
     const pickerContent = document.getElementById('random-picker-content');
     initRandomPicker(pickerContent);
 
+    // Create Vocabulary Panel
+    createPanel(container, 'vocab-panel', 'VOCABULARY BOOK', `<div id="vocab-content-area"></div>`, '500px');
+    initVocabSystem('vocab-content-area');
+
     // Create generic placeholders for others
-    ['vocab-panel', 'games-panel', 'info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
+    ['games-panel', 'info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
         const title = id.replace('-panel', '').toUpperCase();
         createPanel(container, id, `${title} MODULE`, `
              <div style="text-align: center; padding: 40px; font-family: var(--font-scifi); color: var(--text-muted);">

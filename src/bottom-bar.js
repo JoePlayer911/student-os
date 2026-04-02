@@ -1,7 +1,13 @@
+import { openDiorama } from './diorama.js';
+
+let currentSelectedIslandId = null;
+
 export function initBottomBar() {
   const btn = document.getElementById('bottom-action-btn');
   btn.onclick = () => {
-    alert("Presentation mode will be implemented in Milestone 2.");
+    if (currentSelectedIslandId) {
+      openDiorama(currentSelectedIslandId);
+    }
   };
 }
 
@@ -12,6 +18,7 @@ export function updateBottomBar(islandData) {
   const actionBtn = document.getElementById('bottom-action-btn');
 
   if (islandData) {
+    currentSelectedIslandId = islandData.id;
     title.innerText = islandData.name;
     title.style.color = islandData.color;
     pop.innerText = islandData.population || "--";
@@ -20,6 +27,7 @@ export function updateBottomBar(islandData) {
     actionBtn.disabled = false;
     actionBtn.style.backgroundColor = islandData.color;
   } else {
+    currentSelectedIslandId = null;
     title.innerText = "Awaiting Input";
     title.style.color = "var(--accent-gold)";
     pop.innerText = "--";

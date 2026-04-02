@@ -2,6 +2,7 @@ import { initGlobe, resetGlobeView, updateCoordinateDisplay } from './globe.js';
 import { renderSidebars } from './sidebar.js';
 import { initBottomBar, updateBottomBar } from './bottom-bar.js';
 import { initPanels, openPanel, closeAllPanels } from './panels.js';
+import { initDioramaSystem } from './diorama.js';
 
 console.log("Nusantara Explorer OS Initialized.");
 
@@ -11,6 +12,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // 2. Initialize Bottom Bar
     initBottomBar();
+
+    // 3. Initialize Diorama System
+    initDioramaSystem();
 
     // 3. Initialize Sidebars with a callback for actions
     renderSidebars((config) => {
