@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+  <title>Nusantara Explorer</title>
+  <!-- Google Fonts: Orbitron for sci-fi, Inter for plain text -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Orbitron:wght@500;700;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/src/styles/main.css">
+</head>
+
+<body>
+  <div id="app">
+    <!-- Center globe container -->
+    <div id="globe-container"></div>
+
+    <!-- Top header bar -->
+    <header id="top-bar">
+      <div class="logo">
+        <div class="logo-icon"></div>
+        <h1>NUSANTARA EXPLORER</h1>
+      </div>
+      <div class="top-stats">
+        <div class="stat"><span class="label">LAT/LNG</span> <span id="stat-coord">0.00, 0.00</span></div>
+        <div class="stat"><span class="label">SYS</span> <span id="stat-sys" class="text-glow">ONLINE</span></div>
+      </div>
+    </header>
+
+    <!-- Left sidebar -->
+    <nav id="sidebar-left" class="sidebar">
+      <!-- Content injected by JS -->
+    </nav>
+
+    <!-- Right sidebar -->
+    <nav id="sidebar-right" class="sidebar right">
+      <!-- Content injected by JS -->
+    </nav>
+
+    <!-- Bottom info bar -->
+    <div id="bottom-bar">
+      <div class="bottom-decorator"></div>
+      <div class="bottom-content">
+        <div class="bottom-header">ISLAND INFO</div>
+        <h2 id="bottom-title">Awaiting Input</h2>
+        <div class="bottom-details">
+          <div class="data-row">
+            <span class="label">POPULATION</span> <span class="value" id="bottom-pop">--</span>
+          </div>
+          <div class="data-row">
+            <span class="label">AREA</span> <span class="value" id="bottom-area">--</span>
+          </div>
+        </div>
+      </div>
+      <div class="bottom-action-container">
+        <button id="bottom-action-btn" class="action-btn" disabled>⮞</button>
+      </div>
+    </div>
+
+    <!-- Overlays / Modals -->
+    <div id="panels-container"></div>
+  </div>
+  <script type="module" src="/src/main.js"></script>
+</body>
+
+</html>
