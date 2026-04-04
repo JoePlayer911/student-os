@@ -18,7 +18,7 @@ export function initGlobe(containerId, onIslandSelect) {
     .atmosphereAltitude(0.15);
 
   // Set initial camera position looking at Indonesia
-  globeInstance.pointOfView({ lat: -2.0, lng: 170.0, altitude: 2 }, 1000);
+  globeInstance.pointOfView({ lat: -2.0, lng: 163.0, altitude: 2 }, 1000);
 
   // Configure auto-rotation
   globeInstance.controls().autoRotate = true;
