@@ -77,8 +77,33 @@ export function initPanels() {
         });
     }
 
+    // Create Info Panel
+    createPanel(container, 'info-panel', `<span data-i18n="panel-info">INFO MODULE</span>`, `
+        <div style="padding: 20px; font-family: var(--font-body); color: var(--text-main); line-height: 1.6;">
+            <div style="margin-bottom: 20px; border-left: 4px solid var(--accent-gold); padding-left: 15px; background: rgba(212, 175, 55, 0.05); padding-top: 10px; padding-bottom: 10px;">
+                <label style="display: block; color: var(--accent-gold); font-family: var(--font-scifi); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 4px; opacity: 0.8;">DEVELOPER</label>
+                <div style="font-size: 1.2rem; font-weight: 600; letter-spacing: 0.5px;">Jonathan Ie</div>
+            </div>
+            
+            <div style="margin-bottom: 20px; border-left: 4px solid var(--accent-cyan); padding-left: 15px; background: rgba(0, 240, 255, 0.05); padding-top: 10px; padding-bottom: 10px;">
+                <label style="display: block; color: var(--accent-cyan); font-family: var(--font-scifi); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 4px; opacity: 0.8;">INSPIRATION</label>
+                <div style="font-size: 1.1rem;">Arknights UI/UX Design</div>
+            </div>
+
+            <div style="margin-bottom: 20px; border-left: 4px solid var(--text-muted); padding-left: 15px; background: rgba(255, 255, 255, 0.03); padding-top: 10px; padding-bottom: 10px;">
+                <label style="display: block; color: var(--text-muted); font-family: var(--font-scifi); font-size: 0.75rem; letter-spacing: 2px; margin-bottom: 4px; opacity: 0.8;">LOADING SEQUENCE</label>
+                <div style="font-size: 1rem;">Glider scene from <span style="font-style: italic; color: var(--accent-gold);">IMHHW</span></div>
+            </div>
+
+            <div style="margin-top: 30px; padding: 15px; background: rgba(255, 255, 255, 0.05); border-radius: 4px; font-size: 0.8rem; color: var(--text-muted); text-align: center; border: 1px dashed rgba(255, 255, 255, 0.1); font-family: var(--font-scifi);">
+                NUSANTARA EXPLORER<br>
+                <span style="font-size: 0.7rem; opacity: 0.6;">SYSTEM VERSION 1.0.4-STABLE</span>
+            </div>
+        </div>
+    `);
+
     // Create generic placeholders for others
-    ['info-panel', 'archive-panel', 'mission-panel'].forEach(id => {
+    ['archive-panel', 'mission-panel'].forEach(id => {
         const title = id.replace('-panel', '').toUpperCase();
         createPanel(container, id, `${title} MODULE`, `
              <div style="text-align: center; padding: 40px; font-family: var(--font-scifi); color: var(--text-muted);">

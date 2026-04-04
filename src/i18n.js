@@ -22,6 +22,7 @@ export const translations = {
     "sh-target-header": "FIND THIS:",
     "sh-victory-title": "ALL TARGETS FOUND!",
 
+    "panel-info": "INFO MODULE",
     "panel-settings": "SYSTEM SETTINGS",
     "label-sys-lang": "SYSTEM LANGUAGE",
     "label-disp-scale": "DISPLAY UI SCALE",
@@ -67,6 +68,7 @@ export const translations = {
     "sh-target-header": "CARI INI:",
     "sh-victory-title": "SEMUA TARGET DITEMUKAN!",
 
+    "panel-info": "MODUL INFO",
     "panel-settings": "PENGATURAN SISTEM",
     "label-sys-lang": "BAHASA SISTEM",
     "label-disp-scale": "SKALA UI TAMPILAN",
@@ -112,6 +114,7 @@ export const translations = {
     "sh-target-header": "寻找这个：",
     "sh-victory-title": "找到所有目标！",
 
+    "panel-info": "信息模块",
     "panel-settings": "系统设置",
     "label-sys-lang": "系统语言",
     "label-disp-scale": "显示 UI 缩放",
@@ -157,6 +160,7 @@ export const translations = {
     "sh-target-header": "尋找這個：",
     "sh-victory-title": "找到所有目標！",
 
+    "panel-info": "信息模塊",
     "panel-settings": "系統設置",
     "label-sys-lang": "系統語言",
     "label-disp-scale": "顯示 UI 縮放",
