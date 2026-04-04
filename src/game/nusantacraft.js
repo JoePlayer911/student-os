@@ -6,6 +6,89 @@ let currentGameIslandId = null;
 let activeTargetEl = null;
 let remainingItems = 0;
 
+function playGameSound(type) {
+  const audioCtx = window.ncAudioCtx || new (window.AudioContext || window.webkitAudioContext)();
+  if (!window.ncAudioCtx) window.ncAudioCtx = audioCtx;
+  
+  if (audioCtx.state === 'suspended') {
+    audioCtx.resume();
+  }
+
+  const osc = audioCtx.createOscillator();
+  const gain = audioCtx.createGain();
+  
+  osc.connect(gain);
+  gain.connect(audioCtx.destination);
+  
+  const now = audioCtx.currentTime;
+  
+  switch(type) {
+    case 'select':
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(400, now);
+      osc.frequency.exponentialRampToValueAtTime(800, now + 0.1);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.3, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0, now + 0.15);
+      osc.start(now);
+      osc.stop(now + 0.15);
+      break;
+    case 'deselect':
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(600, now);
+      osc.frequency.exponentialRampToValueAtTime(300, now + 0.1);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.2, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0, now + 0.15);
+      osc.start(now);
+      osc.stop(now + 0.15);
+      break;
+    case 'matched':
+      osc.type = 'triangle';
+      osc.frequency.setValueAtTime(440, now);
+      osc.frequency.setValueAtTime(554, now + 0.1); // C#
+      osc.frequency.setValueAtTime(659, now + 0.2); // E
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.4, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0, now + 0.4);
+      osc.start(now);
+      osc.stop(now + 0.4);
+      break;
+    case 'wrong':
+      osc.type = 'sawtooth';
+      osc.frequency.setValueAtTime(150, now);
+      osc.frequency.linearRampToValueAtTime(100, now + 0.3);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.3, now + 0.05);
+      gain.gain.linearRampToValueAtTime(0, now + 0.4);
+      osc.start(now);
+      osc.stop(now + 0.4);
+      break;
+    case 'victory':
+      osc.type = 'square';
+      osc.frequency.setValueAtTime(440, now); // A
+      osc.frequency.setValueAtTime(554, now + 0.15); // C#
+      osc.frequency.setValueAtTime(659, now + 0.3); // E
+      osc.frequency.setValueAtTime(880, now + 0.45); // A high
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.3, now + 0.1);
+      gain.gain.linearRampToValueAtTime(0.1, now + 0.8);
+      gain.gain.linearRampToValueAtTime(0, now + 1.0);
+      osc.start(now);
+      osc.stop(now + 1.0);
+      break;
+    case 'click':
+      osc.type = 'sine';
+      osc.frequency.setValueAtTime(800, now);
+      gain.gain.setValueAtTime(0, now);
+      gain.gain.linearRampToValueAtTime(0.1, now + 0.02);
+      gain.gain.linearRampToValueAtTime(0, now + 0.05);
+      osc.start(now);
+      osc.stop(now + 0.05);
+      break;
+  }
+}
+
 export function startNusantacraft() {
   const islands = Object.keys(dioramaData).filter(id => id !== 'taiwan');
   const randomIsland = islands[Math.floor(Math.random() * islands.length)];
@@ -36,12 +119,20 @@ export function startNusantacraft() {
 
 function handleDioramaClick(e) {
   const target = e.target.closest('.nc-drop-target');
-  if (!target) return;
+  if (!target) {
+    if (activeTargetEl) {
+      activeTargetEl.classList.remove('nc-target-selected');
+      activeTargetEl = null;
+      playGameSound('deselect');
+    }
+    return;
+  }
   
   // If clicking an already selected target, deselect it
   if (activeTargetEl === target) {
     target.classList.remove('nc-target-selected');
     activeTargetEl = null;
+    playGameSound('deselect');
     return;
   }
   
@@ -53,6 +144,7 @@ function handleDioramaClick(e) {
   // Select new
   activeTargetEl = target;
   target.classList.add('nc-target-selected');
+  playGameSound('select');
 }
 
 function buildInventory(correctIslandId) {
@@ -117,6 +209,7 @@ function buildInventory(correctIslandId) {
 function handleTrayItemClick(spriteEl, itemUrl) {
   if (!activeTargetEl) {
     showToast("Select an empty slot in the diorama first!");
+    playGameSound('wrong');
     return;
   }
   
@@ -152,11 +245,15 @@ function handleSuccess(spriteEl, dropZoneEl) {
   // Decrement
   remainingItems--;
   if (remainingItems <= 0) {
+    playGameSound('victory');
     showVictory();
+  } else {
+    playGameSound('matched');
   }
 }
 
 function handleFail() {
+  playGameSound('wrong');
   showToast("Hmm, that doesn't seem to belong there...");
 }
 
@@ -180,6 +277,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnPlay = document.getElementById('nc-btn-playagain');
   if (btnPlay) {
     btnPlay.addEventListener('click', () => {
+      playGameSound('click');
       document.getElementById('nc-inventory-wrapper').classList.remove('hidden');
       startNusantacraft();
     });
@@ -188,6 +286,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const btnOrbit = document.getElementById('nc-btn-orbit');
   if (btnOrbit) {
     btnOrbit.addEventListener('click', () => {
+      playGameSound('click');
       document.getElementById('nc-ui').classList.add('hidden');
       document.getElementById('diorama-exit-btn').click(); // trigger natural exit
     });
