@@ -4,6 +4,7 @@ import { resetGlobeView } from './globe.js';
 
 let isDioramaActive = false;
 let isDioramaGameMode = false;
+let isDioramaFocused = false;
 let currentDioramaContext = null;
 
 const getAssetUrl = (url) => {
@@ -54,7 +55,7 @@ export function initDioramaSystem() {
 
   // Parallax mouse movement
   document.addEventListener('mousemove', (e) => {
-    if (!isDioramaActive || isDioramaGameMode) return;
+    if (!isDioramaActive || isDioramaGameMode || isDioramaFocused) return;
     
     // Calculate normalized coords (-1 to 1)
     const mouseX = (e.clientX / window.innerWidth) * 2 - 1;
@@ -74,7 +75,7 @@ export function initDioramaSystem() {
 
   // Touch tracking for smartboards
   document.addEventListener('touchmove', (e) => {
-    if (!isDioramaActive || isDioramaGameMode || !e.touches || e.touches.length === 0) return;
+    if (!isDioramaActive || isDioramaGameMode || isDioramaFocused || !e.touches || e.touches.length === 0) return;
     const touch = e.touches[0];
     
     const mouseX = (touch.clientX / window.innerWidth) * 2 - 1;
@@ -93,6 +94,25 @@ export function initDioramaSystem() {
   // Setup close button on annotation
   document.getElementById('anno-close').addEventListener('click', () => {
     document.getElementById('diorama-annotation').classList.add('hidden');
+    isDioramaFocused = false;
+    
+    // Un-focus all layers
+    document.querySelectorAll('.diorama-layer').forEach(l => {
+      l.style.filter = '';
+      if (l.dataset.focused === 'true') {
+        l.style.top = l.dataset.originalTop;
+        l.style.left = l.dataset.originalLeft;
+        l.style.transform = l.dataset.originalTransform;
+        l.style.zIndex = l.dataset.originalZIndex;
+        l.style.scale = '1';
+        
+        setTimeout(() => {
+          if (!isDioramaFocused) l.style.transition = 'transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+        }, 500);
+        
+        delete l.dataset.focused;
+      }
+    });
   });
 }
 
@@ -173,7 +193,7 @@ export function openDiorama(islandId, isGameMode = false) {
     }
 
     // Add hotspots to this layer
-    if (layerData.hotspots) {
+    if (layerData.hotspots && !isGameMode) {
       layerData.hotspots.forEach(hs => {
         const hsEl = document.createElement('div');
         hsEl.className = 'diorama-hotspot';
@@ -184,8 +204,51 @@ export function openDiorama(islandId, isGameMode = false) {
         hsEl.style.left = hs.left;
         hsEl.style.transform = 'translate(-50%, -50%)'; // center on coord
         
+        hsEl.addEventListener('mouseenter', () => {
+          if (!isDioramaFocused) {
+            layerEl.style.transition = 'transform 0.3s ease, scale 0.3s ease';
+            layerEl.style.scale = '1.05';
+            hsEl.style.transform = 'translate(-50%, -50%) scale(1.2)';
+          }
+        });
+        
+        hsEl.addEventListener('mouseleave', () => {
+          if (!isDioramaFocused) {
+            layerEl.style.scale = '1';
+            hsEl.style.transform = 'translate(-50%, -50%) scale(1)';
+            setTimeout(() => {
+              if (!isDioramaFocused) layerEl.style.transition = 'transform 0.1s cubic-bezier(0.2, 0.8, 0.2, 1)';
+            }, 300);
+          }
+        });
+        
         hsEl.addEventListener('click', (e) => {
           e.stopPropagation();
+          isDioramaFocused = true;
+          
+          // Blur other layers
+          document.querySelectorAll('.diorama-layer').forEach(l => {
+             if (l !== layerEl && !l.classList.contains('bg-layer')) {
+                 l.style.transition = 'filter 0.5s ease';
+                 l.style.filter = 'blur(6px) brightness(0.6)';
+             }
+          });
+          
+          if (!layerEl.dataset.focused) {
+              layerEl.dataset.originalTop = layerEl.style.top || layerData.top;
+              layerEl.dataset.originalLeft = layerEl.style.left || layerData.left;
+              layerEl.dataset.originalTransform = layerEl.style.transform || 'translate(0px, 0px)';
+              layerEl.dataset.originalZIndex = layerEl.style.zIndex;
+          }
+          
+          layerEl.dataset.focused = 'true';
+          layerEl.style.transition = 'all 0.5s cubic-bezier(0.2, 0.8, 0.2, 1)';
+          layerEl.style.zIndex = '9999';
+          layerEl.style.top = '50%';
+          layerEl.style.left = '30%';
+          layerEl.style.transform = 'translate(-50%, -50%)';
+          layerEl.style.scale = '1.3';
+          
           showAnnotation(hs.title, hs.desc);
         });
         

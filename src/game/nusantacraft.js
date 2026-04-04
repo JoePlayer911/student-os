@@ -7,7 +7,7 @@ let activeTargetEl = null;
 let remainingItems = 0;
 
 export function startNusantacraft() {
-  const islands = Object.keys(dioramaData);
+  const islands = Object.keys(dioramaData).filter(id => id !== 'taiwan');
   const randomIsland = islands[Math.floor(Math.random() * islands.length)];
   currentGameIslandId = randomIsland;
   
@@ -66,7 +66,8 @@ function buildInventory(correctIslandId) {
   
   // Build a pool of all interactive layers
   let allLayers = [];
-  Object.values(dioramaData).forEach(island => {
+  Object.entries(dioramaData).forEach(([islandId, island]) => {
+    if (islandId === 'taiwan') return; // Exclude Taiwan layers from game pool
     island.layers.forEach(layer => {
       if (layer.url && !layer.id.startsWith('bg-')) {
         allLayers.push(layer);
@@ -136,7 +137,7 @@ function handleSuccess(spriteEl, dropZoneEl) {
   dropZoneEl.style.animation = 'none';
   dropZoneEl.style.border = 'none';
   dropZoneEl.innerHTML = ''; // clear hint text
-  dropZoneEl.style.background = 'transparent';
+  dropZoneEl.style.backgroundColor = 'transparent';
   
   const resolvedUrl = spriteEl.style.backgroundImage;
   dropZoneEl.style.backgroundImage = resolvedUrl;
