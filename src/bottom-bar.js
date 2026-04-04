@@ -1,4 +1,5 @@
 import { openDiorama } from './diorama.js';
+import { deepDiveToActiveIsland } from './globe.js';
 
 let currentSelectedIslandId = null;
 
@@ -6,7 +7,9 @@ export function initBottomBar() {
   const btn = document.getElementById('bottom-action-btn');
   btn.onclick = () => {
     if (currentSelectedIslandId) {
-      openDiorama(currentSelectedIslandId);
+      deepDiveToActiveIsland(() => {
+        openDiorama(currentSelectedIslandId);
+      });
     }
   };
 }

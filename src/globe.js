@@ -18,7 +18,7 @@ export function initGlobe(containerId, onIslandSelect) {
     .atmosphereAltitude(0.15);
 
   // Set initial camera position looking at Indonesia
-  globeInstance.pointOfView({ lat: -2.0, lng: 118.0, altitude: 2 }, 1000);
+  globeInstance.pointOfView({ lat: -2.0, lng: 178.0, altitude: 2 }, 1000);
 
   // Configure auto-rotation
   globeInstance.controls().autoRotate = true;
@@ -37,12 +37,12 @@ export function initGlobe(containerId, onIslandSelect) {
     .htmlElement(d => {
       const el = document.createElement('div');
       el.className = 'marker-container';
-      
+
       const dot = document.createElement('div');
       dot.className = 'marker-dot';
       dot.style.backgroundColor = d.color;
       dot.style.boxShadow = `0 0 10px ${d.color}`;
-      
+
       // Override dot pseudo-element border color via a tiny style injection or just use CSS vars.
       // We will handle it by injecting a style directly to avoid complex CSS manipulation.
       el.innerHTML = `
@@ -52,7 +52,7 @@ export function initGlobe(containerId, onIslandSelect) {
         <div class="marker-dot marker-${d.id}" style="background-color: ${d.color}; box-shadow: 0 0 10px ${d.color};"></div>
         <div class="marker-label">${d.name}</div>
       `;
-      
+
       el.onclick = (e) => {
         e.stopPropagation();
         focusOnIsland(d);
@@ -71,10 +71,10 @@ export function initGlobe(containerId, onIslandSelect) {
 
 function focusOnIsland(islandConfig) {
   currentActiveIsland = islandConfig;
-  
+
   // Disable auto rotate
   globeInstance.controls().autoRotate = false;
-  
+
   // Fly to points
   globeInstance.pointOfView({
     lat: islandConfig.lat,
@@ -89,10 +89,27 @@ export function resetGlobeView() {
   globeInstance.controls().autoRotate = true;
 }
 
+export function deepDiveToActiveIsland(callback) {
+  if (!currentActiveIsland || !globeInstance) {
+    if (callback) callback();
+    return;
+  }
+
+  globeInstance.pointOfView({
+    lat: currentActiveIsland.lat,
+    lng: currentActiveIsland.lng,
+    altitude: 0.05
+  }, 800);
+
+  setTimeout(() => {
+    if (callback) callback();
+  }, 800);
+}
+
 export function updateCoordinateDisplay(elementId) {
   const el = document.getElementById(elementId);
   if (!el) return;
-  
+
   // Update coords based on camera position frequently
   setInterval(() => {
     if (globeInstance) {
