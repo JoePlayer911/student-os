@@ -2,6 +2,7 @@
 import { dioramaData } from '../data/dioramas.js';
 import { openDiorama } from '../diorama.js';
 import { playSound } from '../audio.js';
+import { t } from '../i18n.js';
 
 let currentGameIslandId = null;
 let activeTargetEl = null;
@@ -128,7 +129,7 @@ function buildInventory(correctIslandId) {
 
 function handleTrayItemClick(spriteEl, itemUrl) {
   if (!activeTargetEl) {
-    showToast("Select an empty slot in the diorama first!");
+    showToast(t('toast-empty-slot'));
     playSound('wrong');
     return;
   }
@@ -174,7 +175,7 @@ function handleSuccess(spriteEl, dropZoneEl) {
 
 function handleFail() {
   playSound('wrong');
-  showToast("Hmm, that doesn't seem to belong there...");
+  showToast(t('toast-wrong-item'));
 }
 
 function showToast(msg) {

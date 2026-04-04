@@ -1,5 +1,6 @@
 // src/vocabulary.js
 import { vocabularyData as vocabData } from './data/vocab.js';
+import { currentLanguage } from './i18n.js';
 
 export function initVocabSystem(containerId) {
   const container = document.getElementById(containerId);
@@ -24,12 +25,13 @@ export function initVocabSystem(containerId) {
   for (const [category, items] of Object.entries(categories)) {
     html += `<div class="vocab-category-title">${category}</div>`;
     items.forEach(item => {
+      const chnDisplay = currentLanguage === 'zh' ? item.chs : item.cht;
       html += `
-        <div class="vocab-item" data-search="${item.idn.toLowerCase()} ${item.eng.toLowerCase()} ${item.chn.toLowerCase()}">
+        <div class="vocab-item" data-search="${item.idn.toLowerCase()} ${item.eng.toLowerCase()} ${chnDisplay}">
           <div class="vocab-content">
             <div class="vocab-lang-row"><span class="lang-tag idn">IDN</span> <span class="vocab-text vocab-idn">${item.idn}</span></div>
             <div class="vocab-lang-row"><span class="lang-tag eng">ENG</span> <span class="vocab-text vocab-eng">${item.eng}</span></div>
-            <div class="vocab-lang-row"><span class="lang-tag chn">CHN</span> <span class="vocab-text vocab-chn">${item.chn}</span></div>
+            <div class="vocab-lang-row"><span class="lang-tag chn">CHN</span> <span class="vocab-text vocab-chn">${chnDisplay}</span></div>
             <div class="vocab-desc">${item.desc}</div>
           </div>
           <button class="vocab-speak-btn" data-word="${item.idn}">🔊</button>

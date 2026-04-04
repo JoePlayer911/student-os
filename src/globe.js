@@ -118,3 +118,9 @@ export function updateCoordinateDisplay(elementId) {
     }
   }, 100);
 }
+
+export function setGlobeTexture(url) {
+  if (globeInstance) {
+    globeInstance.globeImageUrl(url);
+  }
+}

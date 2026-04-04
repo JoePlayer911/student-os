@@ -4,11 +4,15 @@ import { initBottomBar, updateBottomBar } from './bottom-bar.js';
 import { initPanels, openPanel, closeAllPanels } from './panels.js';
 import { initDioramaSystem } from './diorama.js';
 import { initIntroSequence } from './intro.js';
+import { setLanguage } from './i18n.js';
 
 console.log("Nusantara Explorer OS Initialized.");
 
 document.addEventListener("DOMContentLoaded", () => {
-    // 0. Mount the cinematic intro flow
+    // 0. Base Settings Initialization
+    setLanguage('en');
+
+    // 0.5 Mount the cinematic intro flow
     initIntroSequence();
 
     // 1. Initialize Panels

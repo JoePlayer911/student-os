@@ -2,6 +2,7 @@
 import { dioramaData } from '../data/dioramas.js';
 import { resetGlobeView } from '../globe.js';
 import { playSound } from '../audio.js';
+import { t } from '../i18n.js';
 
 let isGameActive = false;
 let spritePool = [];
@@ -31,7 +32,7 @@ export function startSpriteHunter() {
   
   // Clear diorama layers manually (we don't use openDiorama)
   document.getElementById('diorama-layers-container').innerHTML = '';
-  document.getElementById('diorama-title').textContent = 'SPRITE HUNTER';
+  document.getElementById('diorama-title').textContent = t('title-sh');
   document.getElementById('diorama-annotation').classList.add('hidden');
   document.getElementById('nc-ui').classList.add('hidden');
   
@@ -157,7 +158,7 @@ function handleSpriteClick(spriteEl, title) {
   } else {
     // Fail
     playSound('wrong');
-    showFeedback("Incorrect! Module cooling down...");
+    showFeedback(t('toast-cooldown'));
     
     // Cooldown logic
     cooldownPhase = true;

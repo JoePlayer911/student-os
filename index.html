@@ -18,8 +18,8 @@
   <div id="orientation-warning">
     <div class="warning-content">
       <div class="warning-icon">📱 ⟲ 📳</div>
-      <h2>PLEASE ROTATE DEVICE</h2>
-      <p>Nusantara Explorer requires Landscape mode.</p>
+      <h2 data-i18n="warning-rotate">PLEASE ROTATE DEVICE</h2>
+      <p data-i18n="warning-desc">Nusantara Explorer requires Landscape mode.</p>
     </div>
   </div>
 
@@ -28,8 +28,8 @@
     <div id="intro-black-layer"></div>
     <video id="intro-video" src="/assets/loading/EFMovie_19_x264.mp4" preload="auto" playsinline></video>
     <div class="intro-titles">
-      <h1 class="welcome-text">WELCOME TO INDONESIA</h1>
-      <p id="press-to-soar" class="hidden">Click Anywhere to Soar</p>
+      <h1 class="welcome-text" data-i18n="title-welcome">WELCOME TO INDONESIA</h1>
+      <p id="press-to-soar" class="hidden" data-i18n="press-to-soar">Click Anywhere to Soar</p>
     </div>
   </div>
 
@@ -41,11 +41,11 @@
     <header id="top-bar">
       <div class="logo">
         <div class="logo-icon"></div>
-        <h1>NUSANTARA EXPLORER</h1>
+        <h1 data-i18n="app-title">NUSANTARA EXPLORER</h1>
       </div>
       <div class="top-stats">
-        <div class="stat"><span class="label">LAT/LNG</span> <span id="stat-coord">0.00, 0.00</span></div>
-        <div class="stat"><span class="label">SYS</span> <span id="stat-sys" class="text-glow">ONLINE</span></div>
+        <div class="stat"><span class="label" data-i18n="label-latlng">LAT/LNG</span> <span id="stat-coord">0.00, 0.00</span></div>
+        <div class="stat"><span class="label">SYS</span> <span id="stat-sys" class="text-glow" data-i18n="sys-online">ONLINE</span></div>
       </div>
     </header>
 
@@ -63,14 +63,14 @@
     <div id="bottom-bar">
       <div class="bottom-decorator"></div>
       <div class="bottom-content">
-        <div class="bottom-header">ISLAND INFO</div>
-        <h2 id="bottom-title">Awaiting Input</h2>
+        <div class="bottom-header" data-i18n="label-island-info">ISLAND INFO</div>
+        <h2 id="bottom-title" data-i18n="label-awaiting">Awaiting Input</h2>
         <div class="bottom-details">
           <div class="data-row">
-            <span class="label">POPULATION</span> <span class="value" id="bottom-pop">--</span>
+            <span class="label" data-i18n="label-population">POPULATION</span> <span class="value" id="bottom-pop">--</span>
           </div>
           <div class="data-row">
-            <span class="label">AREA</span> <span class="value" id="bottom-area">--</span>
+            <span class="label" data-i18n="label-area">AREA</span> <span class="value" id="bottom-area">--</span>
           </div>
         </div>
       </div>
@@ -91,7 +91,7 @@
       <div id="diorama-layers-container"></div>
       
       <!-- Diorama UI Overlay -->
-      <button id="diorama-exit-btn">⮜ RETURN TO ORBIT</button>
+      <button id="diorama-exit-btn" data-i18n="nav-orbit">⮜ RETURN TO ORBIT</button>
       <div id="diorama-title">ISLAND NAME</div>
       
       <!-- Annotation Popup -->
@@ -105,16 +105,16 @@
       <div id="nc-ui" class="hidden">
         <div id="nc-feedback-toast" class="hidden"></div>
         <div id="nc-inventory-wrapper">
-          <div class="nc-inventory-header">SELECT A GLOWING BOX, THEN SELECT AN ITEM</div>
+          <div class="nc-inventory-header" data-i18n="nc-header">SELECT A GLOWING BOX, THEN SELECT AN ITEM</div>
           <div id="nc-inventory-track" class="nc-carousel-fluid">
             <!-- draggable items injected here -->
           </div>
         </div>
         <div id="nc-victory-modal" class="hidden">
-          <h2>ISLAND RESTORED!</h2>
+          <h2 data-i18n="nc-victory-title">ISLAND RESTORED!</h2>
           <div class="nc-victory-buttons">
-            <button id="nc-btn-playagain">PLAY AGAIN</button>
-            <button id="nc-btn-orbit">RETURN TO ORBIT</button>
+            <button id="nc-btn-playagain" data-i18n="btn-playagain">PLAY AGAIN</button>
+            <button id="nc-btn-orbit" data-i18n="nav-orbit">RETURN TO ORBIT</button>
           </div>
         </div>
       </div>
@@ -124,15 +124,15 @@
         <div id="sh-feedback-toast" class="hidden"></div>
         <div id="sh-lanes-container"></div>
         <div id="sh-bottom-panel">
-          <div class="sh-target-header">FIND THIS:</div>
+          <div class="sh-target-header" data-i18n="sh-target-header">FIND THIS:</div>
           <div id="sh-target-word">***</div>
           <div id="sh-score">SCORE: 0 / 10</div>
         </div>
         <div id="sh-victory-modal" class="hidden">
-          <h2>ALL TARGETS FOUND!</h2>
+          <h2 data-i18n="sh-victory-title">ALL TARGETS FOUND!</h2>
           <div class="sh-victory-buttons">
-            <button id="sh-btn-playagain">PLAY AGAIN</button>
-            <button id="sh-btn-orbit">RETURN TO ORBIT</button>
+            <button id="sh-btn-playagain" data-i18n="btn-playagain">PLAY AGAIN</button>
+            <button id="sh-btn-orbit" data-i18n="nav-orbit">RETURN TO ORBIT</button>
           </div>
         </div>
       </div>
