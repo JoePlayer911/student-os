@@ -13,37 +13,7 @@ const getAssetUrl = (url) => {
   }
   return url;
 };
-// Simple synthesized SFX
-function playSciFiSound(type) {
-  const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-  const osc = audioCtx.createOscillator();
-  const gain = audioCtx.createGain();
-  
-  osc.connect(gain);
-  gain.connect(audioCtx.destination);
-  
-  if (type === 'enter') {
-    // Swoosh up
-    osc.type = 'sine';
-    osc.frequency.setValueAtTime(150, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(600, audioCtx.currentTime + 0.5);
-    gain.gain.setValueAtTime(0, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.5, audioCtx.currentTime + 0.1);
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.5);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.5);
-  } else if (type === 'exit') {
-    // Sweep down
-    osc.type = 'square';
-    osc.frequency.setValueAtTime(400, audioCtx.currentTime);
-    osc.frequency.exponentialRampToValueAtTime(50, audioCtx.currentTime + 0.4);
-    gain.gain.setValueAtTime(0, audioCtx.currentTime);
-    gain.gain.linearRampToValueAtTime(0.2, audioCtx.currentTime + 0.05);
-    gain.gain.exponentialRampToValueAtTime(0.01, audioCtx.currentTime + 0.4);
-    osc.start();
-    osc.stop(audioCtx.currentTime + 0.4);
-  }
-}
+import { playSound } from './audio.js';
 
 export function initDioramaSystem() {
   const exitBtn = document.getElementById('diorama-exit-btn');
@@ -272,7 +242,7 @@ export function openDiorama(islandId, isGameMode = false) {
   void view.offsetWidth;
   view.style.opacity = '1';
 
-  playSciFiSound('enter');
+  playSound('enter');
 }
 
 export function closeDiorama() {
@@ -286,7 +256,7 @@ export function closeDiorama() {
   const ncui = document.getElementById('nc-ui');
   if (ncui) ncui.classList.add('hidden');
   
-  playSciFiSound('exit');
+  playSound('exit');
   
   // Reset the globe view
   resetGlobeView();

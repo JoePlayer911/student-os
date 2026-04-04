@@ -1,6 +1,7 @@
 import { initRandomPicker } from './random-picker.js';
 import { initVocabSystem } from './vocabulary.js';
 import { startNusantacraft } from './game/nusantacraft.js';
+import { startSpriteHunter } from './game/spritehunter.js';
 
 export function initPanels() {
     const container = document.getElementById('panels-container');
@@ -59,20 +60,23 @@ export function initPanels() {
     createPanel(container, 'games-panel', 'GAMES MODULE', `
         <div style="text-align: center; padding: 20px; font-family: var(--font-scifi);">
             <div style="font-size: 3rem; margin-bottom: 10px;">🎮</div>
-            <h2 style="color: var(--accent-gold); margin-bottom: 20px;">NUSANTACRAFT</h2>
+            <button id="btn-launch-nusantacraft" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-cyan); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%; margin-bottom: 15px;">NUSANTACRAFT EXPEDITION</button>
+            
+            <h2 style="color: var(--accent-gold); margin-bottom: 20px; margin-top: 30px;">SPRITE HUNTER</h2>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;">
-                Restore the diorama by dragging the correct elements to their rightful places across the archipelago.
+                Identify the correct moving items by their cultural names. Do not hit the wrong targets!
             </p>
-            <button id="btn-launch-nusantacraft" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-cyan); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi);">LAUNCH EXPEDITION</button>
+            <button id="btn-launch-spritehunter" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%;">SPRITE HUNTER PROTOCOL</button>
         </div>
     `);
 
     // Ensure the dom is attached before querying
     setTimeout(() => {
-        const launchBtn = document.getElementById('btn-launch-nusantacraft');
-        if (launchBtn) {
-            launchBtn.addEventListener('click', startNusantacraft);
-        }
+        const launchBtnNC = document.getElementById('btn-launch-nusantacraft');
+        if (launchBtnNC) launchBtnNC.addEventListener('click', startNusantacraft);
+        
+        const launchBtnSH = document.getElementById('btn-launch-spritehunter');
+        if (launchBtnSH) launchBtnSH.addEventListener('click', startSpriteHunter);
     }, 100);
 }
 
