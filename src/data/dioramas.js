@@ -45,7 +45,7 @@ export const dioramaData = {
         url: "/assets/sumatra/tiger.png",
         depth: 1.0, // Animals
         colorPlaceholder: "#D4771C",
-        width: "35%", height: "35%", top: "60%", left: "70%",
+        width: "35%", height: "35%", top: "65%", left: "70%",
         hotspots: [
           {
             title: "Sumatran Tiger",
@@ -174,7 +174,7 @@ export const dioramaData = {
       },
       {
         id: "fore-bird", type: "image", url: "/assets/papua/papua-cendrawasih.webp", depth: 1.0, colorPlaceholder: "#E5C142", width: "35%", height: "45%", top: "10%", left: "45%",
-        hotspots: [{ title: "Bird of Paradise", desc: "Famous for the spectacular plumage of its males, native to the forests of Papua.", top: "50%", left: "50%" }]
+        hotspots: [{ title: "Cendrawasih", desc: "Famous for the spectacular plumage of its males, native to the forests of Papua.", top: "50%", left: "50%" }]
       }
     ]
   },

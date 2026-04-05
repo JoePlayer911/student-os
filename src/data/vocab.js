@@ -32,7 +32,7 @@ export const vocabularyData = [
 
   // PAPUA
   { id: 21, category: "Papua", idn: "Honai", eng: "Honai House", cht: "霍奈屋 (Huò nài wū)", chs: "霍奈屋 (Huò nài wū)", desc: "The traditional circular house of the Dani people of Papua, built without windows." },
-  { id: 22, category: "Papua", idn: "Burung Cendrawasih", eng: "Bird of Paradise", cht: "天堂鳥 (Tiāntáng niǎo)", chs: "天堂鸟 (Tiāntáng niǎo)", desc: "Famous for the spectacular plumage of its males, native to the forests of Papua." },
+  { id: 22, category: "Papua", idn: "Burung Cendrawasih", eng: "Cendrawasih Bird", cht: "天堂鳥 (Tiāntáng niǎo)", chs: "天堂鸟 (Tiāntáng niǎo)", desc: "Famous for the spectacular plumage of its males, native to the forests of Papua." },
   { id: 23, category: "Papua", idn: "Lembah", eng: "Valley", cht: "山谷 (Shāngǔ)", chs: "山谷 (Shāngǔ)", desc: "Deep and lush valleys forming the dramatic landscape of the Papuan highlands." },
   { id: 24, category: "Papua", idn: "Tari Perang", eng: "War Dance", cht: "戰舞 (Zhàn wǔ)", chs: "战舞 (Zhàn wǔ)", desc: "Traditional ceremonial dances that celebrate communal ties and bravery." }
 ];
