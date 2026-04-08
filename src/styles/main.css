@@ -1480,6 +1480,169 @@ nav,
   box-shadow: var(--glow-cyan);
 }
 
+
+/* ---------------------------------
+   MANCALA GAME OVERLAY
+--------------------------------- */
+#mancala-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle at center, rgba(15, 15, 20, 0.95), #000);
+  z-index: 200;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+#mancala-game-container {
+  width: 90%;
+  height: 80%;
+  max-width: 1200px;
+  background: #000;
+  border: 2px solid var(--accent-cyan);
+  box-shadow: 0 0 30px rgba(0, 240, 255, 0.3), inset 0 0 20px rgba(0, 240, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Ensure Ruffle fills the container */
+#mancala-game-container ruffle-player {
+  width: 100%;
+  height: 100%;
+}
+
+.mancala-ui {
+  margin-top: 30px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+#mancala-exit-btn {
+  background: rgba(255, 42, 42, 0.1);
+  color: #ff2a2a;
+  border: 1px solid #ff2a2a;
+  padding: 15px 40px;
+  font-family: var(--font-scifi);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+  box-shadow: 0 0 10px rgba(255, 42, 42, 0.2);
+}
+
+#mancala-exit-btn:hover {
+  background: rgba(255, 42, 42, 0.3);
+  box-shadow: 0 0 20px rgba(255, 42, 42, 0.5);
+  transform: translateY(-2px);
+}
+
+#mancala-how-btn {
+  background: rgba(0, 240, 255, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid var(--accent-cyan);
+  padding: 15px 40px;
+  font-family: var(--font-scifi);
+  font-size: 1.2rem;
+  letter-spacing: 2px;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+#mancala-how-btn:hover {
+  background: rgba(0, 240, 255, 0.3);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+/* Mancala Help Modal */
+#mancala-help-modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.85);
+  backdrop-filter: blur(10px);
+  z-index: 210;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  pointer-events: auto;
+}
+
+.mancala-help-content {
+  background: var(--bg-panel-solid);
+  border: 1px solid var(--accent-gold);
+  padding: 40px;
+  max-width: 600px;
+  width: 90%;
+  border-radius: 8px;
+  box-shadow: 0 0 30px rgba(245, 200, 0, 0.2);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.mancala-help-content h2 {
+  font-family: var(--font-scifi);
+  color: var(--accent-gold);
+  text-shadow: var(--glow-gold);
+  font-size: 2rem;
+  margin-bottom: 10px;
+  border-bottom: 2px solid var(--accent-gold);
+  padding-bottom: 10px;
+  text-align: left;
+}
+
+.mancala-help-content ul {
+  list-style: none;
+  font-family: var(--font-body);
+  line-height: 1.6;
+}
+
+.mancala-help-content li {
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+  color: var(--text-main);
+  font-size: 1.1rem;
+}
+
+.mancala-help-content li::before {
+  content: '⮞';
+  position: absolute;
+  left: 0;
+  color: var(--accent-gold);
+}
+
+#mancala-close-help {
+  align-self: flex-end;
+  background: var(--accent-gold);
+  color: #000;
+  border: none;
+  padding: 10px 40px;
+  font-family: var(--font-scifi);
+  font-weight: bold;
+  font-size: 1rem;
+  cursor: pointer;
+  border-radius: 4px;
+  transition: all 0.2s;
+}
+
+#mancala-close-help:hover {
+  transform: scale(1.05);
+  box-shadow: var(--glow-gold);
+}
+
 /* Scale UI down roughly by half for mobile landscape */
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {

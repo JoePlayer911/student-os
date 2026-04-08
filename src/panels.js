@@ -2,6 +2,7 @@ import { initRandomPicker } from './random-picker.js';
 import { initVocabSystem } from './vocabulary.js';
 import { startNusantacraft } from './game/nusantacraft.js';
 import { startSpriteHunter } from './game/spritehunter.js';
+import { startMancala } from './game/mancala.js';
 import { setGlobeTexture } from './globe.js';
 import { setLanguage } from './i18n.js';
 
@@ -120,11 +121,13 @@ export function initPanels() {
             <div style="font-size: 3rem; margin-bottom: 10px;">🎮</div>
             <button id="btn-launch-nusantacraft" data-i18n="btn-nc-launch" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-cyan); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%; margin-bottom: 15px;">NUSANTACRAFT EXPEDITION</button>
             
-            <h2 style="color: var(--accent-gold); margin-bottom: 20px; margin-top: 30px;" data-i18n="title-sh">SPRITE HUNTER</h2>
-            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;" data-i18n="desc-sh">
-                Identify the correct moving items by their cultural names. Do not hit the wrong targets!
+            <button id="btn-launch-spritehunter" data-i18n="btn-sh-launch" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%; margin-bottom: 15px;">SPRITE HUNTER PROTOCOL</button>
+
+            <h2 style="color: var(--accent-cyan); margin-bottom: 20px; margin-top: 30px;" data-i18n="title-mancala">TRADITIONAL MANCALA</h2>
+            <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;" data-i18n="desc-mancala">
+                Play the classic board game of Mancala (Congklak). Move your seeds around the board and collect more than your opponent.
             </p>
-            <button id="btn-launch-spritehunter" data-i18n="btn-sh-launch" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%;">SPRITE HUNTER PROTOCOL</button>
+            <button id="btn-launch-mancala" data-i18n="btn-mancala-launch" style="padding: 15px 30px; font-size: 1.2rem; background: #fff; color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%;">MANCALA (CLASSIC)</button>
         </div>
     `);
 
@@ -135,6 +138,9 @@ export function initPanels() {
         
         const launchBtnSH = document.getElementById('btn-launch-spritehunter');
         if (launchBtnSH) launchBtnSH.addEventListener('click', startSpriteHunter);
+        
+        const launchBtnM = document.getElementById('btn-launch-mancala');
+        if (launchBtnM) launchBtnM.addEventListener('click', startMancala);
     }, 100);
 }
 

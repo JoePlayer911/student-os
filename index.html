@@ -137,6 +137,30 @@
         </div>
       </div>
     </div>
+
+    <!-- Mancala Game Overlay -->
+    <div id="mancala-overlay" class="hidden">
+      <div id="mancala-game-container"></div>
+      <div class="mancala-ui">
+        <button id="mancala-how-btn" data-i18n="btn-how-to-play">HOW TO PLAY</button>
+        <button id="mancala-exit-btn" data-i18n="btn-exit-game">EXIT MANCALA</button>
+      </div>
+
+      <!-- Mancala Help Modal -->
+      <div id="mancala-help-modal" class="hidden">
+        <div class="mancala-help-content">
+          <h2 data-i18n="btn-how-to-play">HOW TO PLAY</h2>
+          <ul>
+            <li data-i18n="mancala-rule-1">The game begins with seeds in each small hole.</li>
+            <li data-i18n="mancala-rule-2">Players take turns picking up all seeds from one hole and sowing them one-by-one into subsequent holes.</li>
+            <li data-i18n="mancala-rule-3">If your last seed lands in your Store (the large hole on your right), you get an extra turn.</li>
+            <li data-i18n="mancala-rule-4">If your last seed lands in an empty hole on your side, you capture that seed and all seeds in the opposite hole.</li>
+            <li data-i18n="mancala-rule-5">The game ends when all holes on one side are empty. The player with the most seeds wins.</li>
+          </ul>
+          <button id="mancala-close-help" data-i18n="btn-close-help">GOT IT</button>
+        </div>
+      </div>
+    </div>
   </div>
   <script type="module" src="/src/main.js"></script>
 </body>
