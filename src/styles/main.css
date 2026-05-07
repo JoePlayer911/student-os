@@ -1797,3 +1797,240 @@ nav,
     height: 80px;
   }
 }
+/* --- HANGMAN (SCRAPE & GUESS) --- */
+#hm-ui {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding-top: 80px;
+    z-index: 50;
+    background: radial-gradient(circle at center, rgba(0, 20, 40, 0.4) 0%, rgba(0, 5, 10, 0.8) 100%);
+    backdrop-filter: blur(5px);
+}
+
+#hm-header {
+    display: flex;
+    gap: 40px;
+    margin-bottom: 30px;
+    animation: fadeInDown 0.8s ease-out;
+}
+
+.hm-stat {
+    background: rgba(0, 0, 0, 0.6);
+    border-left: 3px solid var(--accent-cyan);
+    padding: 10px 25px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 120px;
+    box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+}
+
+.hm-stat-label {
+    font-family: var(--font-scifi);
+    font-size: 0.7rem;
+    letter-spacing: 2px;
+    color: var(--accent-cyan);
+    opacity: 0.8;
+}
+
+#hm-chances, #hm-score {
+    font-family: var(--font-scifi);
+    font-size: 1.8rem;
+    font-weight: 900;
+    color: white;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+}
+
+#hm-game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 900px;
+}
+
+#hm-scrape-area {
+    position: relative;
+    width: 320px;
+    height: 320px;
+    background: #050505;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 0 40px rgba(0, 0, 0, 0.5);
+    margin-bottom: 40px;
+    overflow: hidden;
+    cursor: crosshair;
+}
+
+#hm-target-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    padding: 20px;
+    user-select: none;
+    -webkit-user-drag: none;
+}
+
+#hm-scrape-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    touch-action: none;
+}
+
+#hm-word-display {
+    font-family: var(--font-scifi);
+    font-size: 3rem;
+    letter-spacing: 15px;
+    color: white;
+    margin-bottom: 40px;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    min-height: 4rem;
+}
+
+#hm-keyboard-container {
+    width: 100%;
+    max-width: 700px;
+    padding: 20px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 12px;
+}
+
+#hm-keyboard {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.hm-key {
+    width: 45px;
+    height: 45px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    color: white;
+    font-family: var(--font-scifi);
+    font-size: 1.2rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+    user-select: none;
+}
+
+.hm-key:hover {
+    background: rgba(0, 240, 255, 0.2);
+    border-color: var(--accent-cyan);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 240, 255, 0.2);
+}
+
+.hm-key.used {
+    opacity: 0.3;
+    pointer-events: none;
+    transform: scale(0.9);
+}
+
+.hm-key.correct {
+    background: rgba(0, 255, 150, 0.3) !important;
+    border-color: #00ff96 !important;
+    color: #00ff96;
+}
+
+.hm-key.wrong {
+    background: rgba(255, 0, 60, 0.3) !important;
+    border-color: #ff003c !important;
+    color: #ff003c;
+}
+
+#hm-victory-modal {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.9);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+    animation: fadeIn 0.5s ease-out;
+}
+
+.hm-modal-content {
+    background: linear-gradient(135deg, rgba(30, 30, 40, 0.95), rgba(10, 10, 20, 0.95));
+    border: 1px solid var(--accent-cyan);
+    padding: 60px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0 0 50px rgba(0, 240, 255, 0.2);
+}
+
+#hm-result-title {
+    font-family: var(--font-scifi);
+    font-size: 3rem;
+    margin-bottom: 20px;
+    color: var(--accent-cyan);
+    letter-spacing: 4px;
+}
+
+#hm-result-word {
+    font-family: var(--font-body);
+    font-size: 1.2rem;
+    color: var(--text-muted);
+    margin-bottom: 40px;
+}
+
+.hm-victory-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.hm-victory-buttons button {
+    padding: 15px;
+    font-family: var(--font-scifi);
+    font-size: 1rem;
+    cursor: pointer;
+    border: none;
+    transition: all 0.3s;
+}
+
+#hm-btn-playagain {
+    background: var(--accent-cyan);
+    color: #000;
+    font-weight: bold;
+}
+
+#hm-btn-playagain:hover {
+    background: white;
+    box-shadow: 0 0 20px var(--accent-cyan);
+}
+
+#hm-btn-orbit {
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.3) !important;
+    color: white;
+}
+
+#hm-btn-orbit:hover {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+

@@ -153,6 +153,46 @@
         </div>
       </div>
 
+      <!-- Hangman (Scrape & Guess) UI Overlays -->
+      <div id="hm-ui" class="hidden">
+        <div id="hm-header">
+            <div class="hm-stat">
+                <span class="hm-stat-label">CHANCES</span>
+                <span id="hm-chances">5</span>
+            </div>
+            <div class="hm-stat">
+                <span class="hm-stat-label">SCORE</span>
+                <span id="hm-score">0</span>
+            </div>
+        </div>
+        
+        <div id="hm-game-container">
+            <div id="hm-scrape-area">
+                <img id="hm-target-img" src="" alt="Mystery word" />
+                <canvas id="hm-scrape-canvas"></canvas>
+            </div>
+            
+            <div id="hm-word-display"></div>
+            
+            <div id="hm-keyboard-container">
+                <div id="hm-keyboard">
+                    <!-- Buttons injected by JS -->
+                </div>
+            </div>
+        </div>
+
+        <div id="hm-victory-modal" class="hidden">
+          <div class="hm-modal-content">
+            <h2 id="hm-result-title">VICTORY!</h2>
+            <p id="hm-result-word">The word was: TIGER</p>
+            <div class="hm-victory-buttons">
+              <button id="hm-btn-playagain" data-i18n="btn-playagain">PLAY AGAIN</button>
+              <button id="hm-btn-orbit" data-i18n="nav-orbit">RETURN TO ORBIT</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
     </div>
 
     <!-- Mancala Game Overlay -->
