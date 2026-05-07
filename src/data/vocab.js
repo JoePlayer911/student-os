@@ -6,7 +6,7 @@ export const vocabularyData = [
   { id: 1, category: "Sumatera", idn: "Rumah Gadang", eng: "Gadang House", cht: "加當屋 (Jiā dāng wū)", chs: "加当屋 (Jiā dāng wū)", desc: "Traditional Minangkabau house with buffalo horn-shaped roofs." },
   { id: 2, category: "Sumatera", idn: "Harimau Sumatera", eng: "Sumatran Tiger", cht: "蘇門答臘虎 (Sūméndálà hǔ)", chs: "苏门答腊虎 (Sūméndálà hǔ)", desc: "A critically endangered tiger subspecies found only on the island of Sumatra." },
   { id: 3, category: "Sumatera", idn: "Bunga Rafflesia", eng: "Rafflesia Flower", cht: "大王花 (Dàwáng huā)", chs: "大王花 (Dàwáng huā)", desc: "The largest individual flower on Earth, known for its strong odor." },
-  { id: 4, category: "Sumatera", idn: "Pakaian Adat", eng: "Traditional Attire", cht: "傳統服飾 (Chuántǒng fúshì)", chs: "传统服饰 (Chuántǒng fúshì)", desc: "Colorful and intricate traditional clothing worn during ceremonies." },
+  { id: 4, category: "Sumatera", idn: "Suku Batak", eng: "Batak Tribe", cht: "巴塔克族 (Bātǎkè zú)", chs: "巴塔克族 (Bātǎkè zú)", desc: "One of the largest ethnic groups in Indonesia, primarily from North Sumatra." },
 
   // KALIMANTAN
   { id: 5, category: "Kalimantan", idn: "Rumah Betang", eng: "Dayak Longhouse", cht: "達雅長屋 (Dá yǎ cháng wū)", chs: "达雅长屋 (Dá yǎ cháng wū)", desc: "Communal dwelling serving as the center of village life for the Dayak people." },
@@ -18,9 +18,9 @@ export const vocabularyData = [
 
   // SULAWESI
   { id: 11, category: "Sulawesi", idn: "Tongkonan", eng: "Tongkonan House", cht: "同科南屋 (Tóng kē nán wū)", chs: "同科南屋 (Tóng kē nán wū)", desc: "The ancestral house of the Torajan people, featuring a distinctive boat-shaped roof." },
-  { id: 12, category: "Sulawesi", idn: "Tari Tradisional", eng: "Traditional Dance", cht: "傳統舞蹈 (Chuántǒng wǔdǎo)", chs: "传统舞蹈 (Chuántǒng wǔdǎo)", desc: "Profound dance and artistic traditions unique to the ethnic groups of Sulawesi." },
+  { id: 12, category: "Sulawesi", idn: "Suku Toraja", eng: "Toraja Tribe", cht: "托拉雅族 (Tuōlāyǎ zú)", chs: "托拉雅族 (Tuōlāyǎ zú)", desc: "An ethnic group indigenous to a mountainous region of South Sulawesi." },
   { id: 13, category: "Sulawesi", idn: "Pantai", eng: "Beach/Coast", cht: "海灘 (Hǎitān)", chs: "海滩 (Hǎitān)", desc: "Beautiful coastal areas that surround the star-shaped island." },
-  { id: 14, category: "Sulawesi", idn: "Kipas Adat", eng: "Traditional Fan", cht: "傳統扇子 (Chuántǒng shànzi)", chs: "传统扇子 (Chuántǒng shànzi)", desc: "Ornate fans often used in cultural dances and ceremonies." },
+  { id: 14, category: "Sulawesi", idn: "Kipas", eng: "Fan", cht: "扇子 (Shànzi)", chs: "扇子 (Shànzi)", desc: "A common accessory used by Sulawesi people, especially in traditional dances like Tari Kipas Pakarena." },
 
   // JAWA
   { id: 15, category: "Jawa", idn: "Monumen Nasional", eng: "National Monument", cht: "國家紀念碑 (Guójiā jìniànbēi)", chs: "国家纪念碑 (Guójiā jìniànbēi)", desc: "An obelisk in Jakarta symbolizing the fight for Indonesia's independence." },
@@ -28,11 +28,11 @@ export const vocabularyData = [
   { id: 17, category: "Jawa", idn: "Wayang Kulit", eng: "Shadow Puppet", cht: "皮影戲 (Píyǐngxì)", chs: "皮影戏 (Píyǐngxì)", desc: "A traditional form of puppet-shadow play originally found in Javanese culture." },
   { id: 18, category: "Jawa", idn: "Tugu Jogja", eng: "Jogja Monument", cht: "日惹紀念碑 (Rì rě jìniànbēi)", chs: "日惹纪念碑 (Rì rě jìniànbēi)", desc: "An important historical landmark in the city of Yogyakarta." },
   { id: 19, category: "Jawa", idn: "Batik", eng: "Batik Cloth", cht: "巴迪克布 (Bā dí kè bù)", chs: "巴迪克布 (Bā dí kè bù)", desc: "The ancient Indonesian art of wax-resist dyeing applied to whole cloth." },
-  { id: 20, category: "Jawa", idn: "Kebaya", eng: "Kebaya Dress", cht: "可巴雅 (Kě bā yǎ)", chs: "可巴雅 (Kě bā yǎ)", desc: "A traditional upper garment worn by women in Java and neighboring regions." },
+  { id: 20, category: "Jawa", idn: "Suku Jawa", eng: "Java Tribe", cht: "爪哇族 (Zhǎowā zú)", chs: "爪哇族 (Zhǎowā zú)", desc: "The largest ethnic group in Indonesia, originating from the central and eastern parts of Java." },
 
   // PAPUA
   { id: 21, category: "Papua", idn: "Honai", eng: "Honai House", cht: "霍奈屋 (Huò nài wū)", chs: "霍奈屋 (Huò nài wū)", desc: "The traditional circular house of the Dani people of Papua, built without windows." },
   { id: 22, category: "Papua", idn: "Burung Cendrawasih", eng: "Cendrawasih Bird", cht: "天堂鳥 (Tiāntáng niǎo)", chs: "天堂鸟 (Tiāntáng niǎo)", desc: "Famous for the spectacular plumage of its males, native to the forests of Papua." },
   { id: 23, category: "Papua", idn: "Lembah", eng: "Valley", cht: "山谷 (Shāngǔ)", chs: "山谷 (Shāngǔ)", desc: "Deep and lush valleys forming the dramatic landscape of the Papuan highlands." },
-  { id: 24, category: "Papua", idn: "Tari Perang", eng: "War Dance", cht: "戰舞 (Zhàn wǔ)", chs: "战舞 (Zhàn wǔ)", desc: "Traditional ceremonial dances that celebrate communal ties and bravery." }
+  { id: 24, category: "Papua", idn: "Suku Dani", eng: "Dani Tribe", cht: "丹尼族 (Dānní zú)", chs: "丹尼族 (Dānní zú)", desc: "The indigenous people of the Baliem Valley in the highlands of Western Papua." }
 ];

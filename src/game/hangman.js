@@ -70,7 +70,7 @@ function buildWordPool() {
                 const title = layer.hotspots[0].title.toUpperCase();
                 // Basic filtering for Animals and Objects
                 const isAnimal = /TIGER|SNAKE|CROCODILE|BIRD|CENDRAWASIH|ALLIGATOR/.test(title);
-                const isObject = /BATIK|WAYANG|KEBAYA|FAN|HOUSE|JOGLO|TONGKONAN|HONAI|GADANG|ATTIRE/.test(title);
+                const isObject = /BATIK|WAYANG|KEBAYA|FAN|HOUSE|JOGLO|TONGKONAN|HONAI|GADANG|ATTIRE|TRIBE/.test(title);
                 
                 if (isAnimal || isObject) {
                     wordPool.push({

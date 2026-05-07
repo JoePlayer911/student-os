@@ -33,8 +33,8 @@ export const dioramaData = {
         width: "50%", height: "70%", top: "30%", left: "40%",
         hotspots: [
           {
-            title: "Traditional Attire",
-            desc: "The colorful and intricate traditional clothing worn during ceremonies and weddings in Sumatera.",
+            title: "Batak Tribe",
+            desc: "The Batak people are one of the most prominent ethnic groups in Sumatra, known for their unique architecture and vibrant culture.",
             top: "50%", left: "50%"
           }
         ]
@@ -98,7 +98,7 @@ export const dioramaData = {
       {
         id: "fore-dayak", type: "image", url: "/assets/kalimantan/kalimantan-people.webp", depth: 0.8, colorPlaceholder: "#E59E5C", width: "30%", height: "60%", top: "35%", left: "55%",
         hotspots: [
-          { title: "Dayak Culture", desc: "The indigenous people of Borneo, known for their rich oral history, ancient traditions, and vibrant clothing.", top: "50%", left: "50%" }
+          { title: "Dayak Tribe", desc: "The indigenous people of Borneo, known for their rich oral history, ancient traditions, and vibrant clothing.", top: "50%", left: "50%" }
         ]
       },
       {
@@ -124,11 +124,11 @@ export const dioramaData = {
       },
       {
         id: "fore-dancer", type: "image", url: "/assets/sulawesi/sulawesi-people.webp", depth: 0.8, colorPlaceholder: "#B02727", width: "40%", height: "70%", top: "35%", left: "55%",
-        hotspots: [{ title: "Traditional Dance", desc: "Sulawesi is home to numerous ethnic groups, each with profound dance and artistic traditions.", top: "50%", left: "50%" }]
+        hotspots: [{ title: "Toraja Tribe", desc: "The Toraja people are known for their elaborate funeral rites and unique boat-shaped Tongkonan houses.", top: "50%", left: "50%" }]
       },
       {
         id: "fore-fan", type: "image", url: "/assets/sulawesi/fan.webp", depth: 1.0, colorPlaceholder: "#1F4A7A", width: "20%", height: "20%", top: "43%", left: "72%",
-        hotspots: [{ title: "Fan Dance", desc: "The infamous fan dance", top: "50%", left: "50%" }]
+        hotspots: [{ title: "Fan", desc: "A common accessory used by Sulawesi people as a dance accessory, notably in the Tari Kipas Pakarena.", top: "50%", left: "50%" }]
       }
     ]
   },
@@ -155,7 +155,7 @@ export const dioramaData = {
       },
       {
         id: "fore-people", type: "image", url: "/assets/jawa/jawa-people.png", depth: 0.9, colorPlaceholder: "#492F24", width: "45%", height: "65%", top: "45%", left: "42%",
-        hotspots: [{ title: "Kebaya", desc: "Traditional upper garment traditionally worn by women.", top: "50%", left: "50%" }]
+        hotspots: [{ title: "Java Tribe", desc: "The largest ethnic group in Indonesia, known for their philosophy, batik art, and gamelan music.", top: "50%", left: "50%" }]
       }
     ]
   },
@@ -170,7 +170,7 @@ export const dioramaData = {
       },
       {
         id: "fore-dance", type: "image", url: "/assets/papua/papua-people.png", depth: 0.8, colorPlaceholder: "#963B2A", width: "45%", height: "80%", top: "20%", left: "50%",
-        hotspots: [{ title: "Papuan Dance", desc: "Traditional ceremonial dances that often mimic nature and celebrate communal ties.", top: "50%", left: "50%" }]
+        hotspots: [{ title: "Dani Tribe", desc: "The Dani people are an indigenous group in the highlands of Papua, famous for their agricultural skills and the Baliem Valley festival.", top: "50%", left: "50%" }]
       },
       {
         id: "fore-bird", type: "image", url: "/assets/papua/papua-cendrawasih.webp", depth: 1.0, colorPlaceholder: "#E5C142", width: "35%", height: "45%", top: "10%", left: "45%",
