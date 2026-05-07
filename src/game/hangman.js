@@ -272,6 +272,15 @@ function endGame(won) {
 
 // Global Binds
 document.addEventListener('DOMContentLoaded', () => {
+    const btnChange = document.getElementById('hm-btn-change');
+    if (btnChange) {
+        btnChange.addEventListener('click', () => {
+            playSound('click');
+            initNewRound();
+            document.getElementById('hm-scrape-canvas').style.boxShadow = "none";
+        });
+    }
+
     const btnPlay = document.getElementById('hm-btn-playagain');
     if (btnPlay) {
         btnPlay.addEventListener('click', () => {
