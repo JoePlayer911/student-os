@@ -3,6 +3,7 @@ import { initVocabSystem } from './vocabulary.js';
 import { startNusantacraft } from './game/nusantacraft.js';
 import { startSpriteHunter } from './game/spritehunter.js';
 import { startMancala } from './game/mancala.js';
+import { startFragment } from './game/fragment.js';
 import { setGlobeTexture } from './globe.js';
 import { setLanguage } from './i18n.js';
 
@@ -123,6 +124,8 @@ export function initPanels() {
             
             <button id="btn-launch-spritehunter" data-i18n="btn-sh-launch" style="padding: 15px 30px; font-size: 1.2rem; background: var(--accent-gold); color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%; margin-bottom: 15px;">SPRITE HUNTER PROTOCOL</button>
 
+            <button id="btn-launch-fragment" data-i18n="btn-fr-launch" style="padding: 15px 30px; font-size: 1.2rem; background: #00f0ff; color: #000; border: none; cursor: pointer; font-weight: bold; border-radius: 8px; font-family: var(--font-scifi); width: 100%; margin-bottom: 15px;">FRAGMENT REASSEMBLER</button>
+
             <h2 style="color: var(--accent-cyan); margin-bottom: 20px; margin-top: 30px;" data-i18n="title-mancala">TRADITIONAL MANCALA</h2>
             <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 30px;" data-i18n="desc-mancala">
                 Play the classic board game of Mancala (Congklak). Move your seeds around the board and collect more than your opponent.
@@ -141,6 +144,9 @@ export function initPanels() {
         
         const launchBtnM = document.getElementById('btn-launch-mancala');
         if (launchBtnM) launchBtnM.addEventListener('click', startMancala);
+
+        const launchBtnF = document.getElementById('btn-launch-fragment');
+        if (launchBtnF) launchBtnF.addEventListener('click', startFragment);
     }, 100);
 }
 

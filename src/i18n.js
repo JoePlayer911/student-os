@@ -21,6 +21,7 @@ export const translations = {
     "btn-playagain": "PLAY AGAIN",
     "sh-target-header": "FIND THIS:",
     "sh-victory-title": "ALL TARGETS FOUND!",
+    "fr-victory-title": "RECONSTRUCTION COMPLETE!",
 
     "panel-info": "INFO MODULE",
     "panel-settings": "SYSTEM SETTINGS",
@@ -44,6 +45,9 @@ export const translations = {
     "title-sh": "SPRITE HUNTER",
     "desc-sh": "Identify the correct moving items by their cultural names. Do not hit the wrong targets!",
     "btn-sh-launch": "SPRITE HUNTER PROTOCOL",
+    "btn-fr-launch": "FRAGMENT REASSEMBLER",
+    "desc-fr": "Reconstruct shattered cultural data by reassembling the scattered fragments.",
+    "title-fr": "FRAGMENT REASSEMBLER",
     "btn-mancala-launch": "MANCALA (CLASSIC)",
     "btn-exit-game": "EXIT GAME",
     "btn-how-to-play": "HOW TO PLAY",
@@ -78,6 +82,7 @@ export const translations = {
     "btn-playagain": "MAIN LAGI",
     "sh-target-header": "CARI INI:",
     "sh-victory-title": "SEMUA TARGET DITEMUKAN!",
+    "fr-victory-title": "REKONSTRUKSI SELESAI!",
 
     "panel-info": "MODUL INFO",
     "panel-settings": "PENGATURAN SISTEM",
@@ -101,6 +106,9 @@ export const translations = {
     "title-sh": "PEMBURU SPRITE",
     "desc-sh": "Identifikasi item bergerak berdasarkan nama budayanya. Jangan sampai salah target!",
     "btn-sh-launch": "PROTOKOL PEMBURU SPRITE",
+    "btn-fr-launch": "PENYUSUN SERPIHAN",
+    "desc-fr": "Rekonstruksi data budaya yang hancur dengan menyusun kembali serpihan yang tersebar.",
+    "title-fr": "PENYUSUN SERPIHAN",
     "btn-mancala-launch": "MANCALA (KLASIK)",
     "btn-exit-game": "KELUAR GAME",
     "btn-how-to-play": "CARA BERMAIN",
@@ -135,6 +143,7 @@ export const translations = {
     "btn-playagain": "再玩一次",
     "sh-target-header": "寻找这个：",
     "sh-victory-title": "找到所有目标！",
+    "fr-victory-title": "重建完成！",
 
     "panel-info": "信息模块",
     "panel-settings": "系统设置",
@@ -158,6 +167,9 @@ export const translations = {
     "title-sh": "SPRITE HUNTER",
     "desc-sh": "根据文化名称识别正确的移动物品。请勿点击错误的目标！",
     "btn-sh-launch": "Sprite Hunter 协议",
+    "btn-fr-launch": "碎片重组",
+    "desc-fr": "通过重新组装分散的碎片来重建破碎的文化数据。",
+    "title-fr": "碎片重组",
 
     "toast-empty-slot": "请先选择全景图中的空白位置！",
     "toast-wrong-item": "哎呀，这里似乎放错了……",
@@ -181,6 +193,7 @@ export const translations = {
     "btn-playagain": "再玩一次",
     "sh-target-header": "尋找這個：",
     "sh-victory-title": "找到所有目標！",
+    "fr-victory-title": "重建完成！",
 
     "panel-info": "信息模塊",
     "panel-settings": "系統設置",
@@ -204,6 +217,9 @@ export const translations = {
     "title-sh": "SPRITE HUNTER",
     "desc-sh": "根據文化名稱識別正確的移動物品。請勿點擊錯誤的目標！",
     "btn-sh-launch": "Sprite Hunter 協議",
+    "btn-fr-launch": "碎片重組",
+    "desc-fr": "通過重新組裝分散的碎片來重建破碎的文化數據。",
+    "title-fr": "碎片重組",
 
     "toast-empty-slot": "請先選擇全景圖中的空白位置！",
     "toast-wrong-item": "哎呀，這裡似乎放錯了……",

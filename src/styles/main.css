@@ -1643,7 +1643,135 @@ nav,
   box-shadow: var(--glow-gold);
 }
 
+
+/* ---------------------------------
+   FRAGMENT REASSEMBLER
+--------------------------------- */
+#fr-ui {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 105;
+  display: flex;
+  flex-direction: column;
+  pointer-events: none;
+}
+
+#fr-game-area {
+  flex: 1;
+  position: relative;
+  overflow: hidden;
+  pointer-events: auto;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(2px);
+}
+
+#fr-bottom-panel {
+  height: 120px;
+  background: var(--bg-panel);
+  backdrop-filter: blur(10px);
+  border-top: 2px solid var(--accent-cyan);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  pointer-events: auto;
+}
+
+.fr-target-header {
+  font-family: var(--font-scifi);
+  font-size: 1.2rem;
+  color: var(--accent-cyan);
+  letter-spacing: 2px;
+}
+
+#fr-status {
+  font-family: var(--font-scifi);
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #fff;
+}
+
+.fr-piece {
+  position: absolute;
+  cursor: grab;
+  transition: transform 0.1s, box-shadow 0.2s;
+  z-index: 10;
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-repeat: no-repeat;
+  touch-action: none;
+}
+
+.fr-piece:active {
+  cursor: grabbing;
+  z-index: 100 !important;
+  box-shadow: 0 0 20px var(--glow-cyan);
+  transform: scale(1.05);
+}
+
+.fr-piece.snapped {
+  cursor: default;
+  pointer-events: none;
+  z-index: 5 !important;
+  border-color: var(--accent-gold);
+  box-shadow: 0 0 10px var(--accent-gold-dim);
+  transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.25);
+}
+
+.fr-slot {
+  position: absolute;
+  border: 1px dashed rgba(255, 255, 255, 0.05);
+  background: rgba(255, 255, 255, 0.02);
+  z-index: 1;
+}
+
+#fr-victory-modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--bg-panel-solid);
+  border: 2px solid var(--accent-gold);
+  padding: 50px;
+  text-align: center;
+  z-index: 300;
+  border-radius: 8px;
+  pointer-events: auto;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.8), var(--glow-gold);
+}
+
+#fr-victory-modal h2 {
+  font-family: var(--font-scifi);
+  font-size: 3rem;
+  color: var(--accent-gold);
+  margin-bottom: 30px;
+}
+
+.fr-victory-buttons button {
+  padding: 15px 30px;
+  margin: 0 10px;
+  font-family: var(--font-scifi);
+  font-size: 1.2rem;
+  cursor: pointer;
+  background: transparent;
+  color: #fff;
+  border: 1px solid var(--accent-cyan);
+  border-radius: 4px;
+  transition: all 0.3s;
+}
+
+.fr-victory-buttons button:hover {
+  background: var(--accent-cyan);
+  color: #000;
+  box-shadow: var(--glow-cyan);
+}
+
 /* Scale UI down roughly by half for mobile landscape */
+
 @media screen and (max-width: 1000px) and (orientation: landscape) {
   html {
     /* Scale down the base rem font-size which drives everything else */
